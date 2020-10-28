@@ -1,7 +1,10 @@
 <template>
 	<view>
+		<view>
+			<image src="../../static/Dingtalk_20201028180805.jpg" class="img" style="width: 750rpx;height: 300rpx;"></image>
+		</view>
 		<!-- 轮播图 -->
-		<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="200"
+		<!-- <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="200"
 		style="width: 750rpx;height: 250rpx;"
 		>
 		<swiper-item>
@@ -10,7 +13,7 @@
 		<swiper-item>
 			<image src="../../static/lunbo2.jpg" style="width: 750rpx;height: 250rpx;"></image>
 		</swiper-item>
-		</swiper>
+		</swiper> -->
 		
 		<!-- 直播列表 -->
 		<view class="flex flex-wrap">

@@ -1,0 +1,34 @@
+<template>
+	<view style="height: 400rpx;" :style="'margin-top:'+statusBarHeight+'px'">
+		<!-- <view style="height: 400rpx;"> -->
+		<video src="http://ivi.bupt.edu.cn/hls/hunanhd.m3u8" autoplay controls="false" class="flex-1"></video>
+	</view>
+	<view class="bg-light" style="height: 1000rpx;z-index:20;">
+		<button @tap="goback" class="bg-main mt-3">返回</button>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				statusBarHeight:0
+			}
+		},
+		methods: {
+			goback() {
+				uni.navigateBack({
+					delta:1
+				});
+			}
+		},
+		onLoad() {
+			let res = uni.getSystemInfoSync()
+			this.statusBarHeight = res.statusBarHeight
+		}
+	}
+</script>
+
+<style>
+
+</style>

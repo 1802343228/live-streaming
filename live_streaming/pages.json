@@ -2,14 +2,16 @@
 	"pages": [{
 		"path": "pages/index/index",
 		"style": {
-			"navigationBarTitleText": "发现"
+			//"navigationBarTextStyle": "white",// 导航栏标题颜色及状态栏前景颜色，仅支持 black/white
+			"app-plus": {
+					"titleNView": false
+				}
 		}
 	}    ,{
             "path" : "pages/my/my",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "我的",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "我的"
             }
             
         }
@@ -17,17 +19,20 @@
             "path" : "pages/live/live",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+               "navigationBarTextStyle": "white",
+               "backgroundColor": "#000000",
+               		"app-plus": {
+               			"titleNView": false
+               		}
             }
             
         }
     ],
 	"globalStyle": {
-		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "直播",
-		"navigationBarBackgroundColor": "#8745FF",
-		"backgroundColor": "#8745FF"
+		// "navigationBarTextStyle": "white",
+		// "navigationBarTitleText": "直播",
+		// "navigationBarBackgroundColor": "#8745FF",
+		// "backgroundColor": "#8745FF"
 	},
 	"tabBar":{
 		"color":"#707070",
@@ -37,7 +42,7 @@
 		"midButton":{
 			"iconPath":"static/tabbar/min.png",
 			"iconWidth":"60px",
-			"height":"65px"
+			"height":"70px"
 		},
 		"list":[{
 			"iconPath":"./static/tabbar/find.png",
