@@ -2,6 +2,9 @@
 export default {
 	onLaunch: function() {
 		console.log('App Launch');
+		uni.onTabBarMidButtonTap(() => {
+			console.log("点击了中间按钮");
+		})
 	},
 	onShow: function() {
 		console.log('App Show');
@@ -13,11 +16,10 @@ export default {
 </script>
 
 <style>
-/* 解决头条小程序组件内引入字体不生效的问题 */
-/* #ifdef MP-TOUTIAO */
-@font-face {
-	font-family: uniicons;
-	src: url('/static/uni.ttf');
-}
-/* #endif */
+	/* 引入自定义图标 */
+	@import url("./common/icon.css");
+	/* 自定义样式库 */
+	@import url("./common/free.css");
+	/* 引入公共样式 */
+	@import url("./common/common.css");
 </style>
