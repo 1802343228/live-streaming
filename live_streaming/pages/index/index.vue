@@ -35,49 +35,57 @@
 						img:'../../static/me.jpg',
 						title:'标题',
 						popularity:0,
-						view:0
+						view:0,
+						isLive:true
 					},
 					{
-						img:'../../static/me.jpg',
+						img:'../../static/bg.jpg',
 						title:'标题',
 						popularity:0,
-						view:0
+						view:0,
+						isLive:false
 					},
 					{
-						img:'../../static/me.jpg',
+						img:'../../static/bg1.jpg',
 						title:'标题',
 						popularity:0,
-						view:0
+						view:0,
+						isLive:false
 					},
 					{
-						img:'../../static/me.jpg',
+						img:'../../static/bg2.png',
 						title:'标题',
 						popularity:0,
-						view:0
+						view:0,
+						isLive:true
 					},
 					{
-						img:'../../static/me.jpg',
+						img:'../../static/bg3.png',
 						title:'标题',
 						popularity:0,
-						view:0
+						view:0,
+						isLive:false
 					},
 					{
-						img:'../../static/me.jpg',
+						img:'../../static/bg3.png',
 						title:'标题',
 						popularity:0,
-						view:0
+						view:0,
+						isLive:false
 					},
 					{
-						img:'../../static/me.jpg',
+						img:'../../static/bg3.png',
 						title:'标题',
 						popularity:0,
-						view:0
+						view:0,
+						isLive:false
 					},
 					{
-						img:'../../static/me.jpg',
+						img:'../../static/bg3.png',
 						title:'标题',
 						popularity:0,
-						view:0
+						view:0,
+						isLive:false
 					}
 				]
 			}

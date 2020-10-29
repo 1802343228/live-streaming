@@ -27,7 +27,7 @@
 	export default{
 		data() {
 			return {
-				defaultAvatar:"/static/img/me.jpg",
+				defaultAvatar:"../../static/me.jpg",
 				gifts:[]//礼物数组
 			}
 		},

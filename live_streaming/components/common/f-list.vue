@@ -1,6 +1,6 @@
 <template>
 	<view class="list-item" @click="$emit('click')" >
-		<image src="../../static/me.jpg" style="width: 365rpx;height: 365rpx;" class="rounded" mode="aspectFill"></image>
+		<image :src="item.img" style="width: 365rpx;height: 365rpx;" class="rounded" mode="aspectFill"></image>
 	
 		<view class="rounded-circle px-2 flex align-center" style="position: absolute;left: 15rpx;top: 15rpx;background-color: rgba(0,0,0,0.4);">
 			<text class="iconfont iconbizhongguanli text-warning mr-1"></text>
@@ -16,9 +16,14 @@
 			<text class="text-white font">{{item.view}}</text>
 		</view>
 	
-		<view class="rounded-circle px-2 flex align-center" style="position: absolute;right: 15rpx;bottom: 15rpx;background-color: rgba(0,0,0,0.4);">
+		<view v-if="!item.isLive" class="rounded-circle px-2 flex align-center" style="position: absolute;right: 15rpx;bottom: 15rpx;background-color: rgba(0,0,0,0.4);">
 			<text style="width: 20rpx;height: 20rpx;" class="rounded-circle bg-danger mr-1"></text>
 			<text class="text-white font-sm">已结束</text>
+		</view>
+		
+		<view v-else class="rounded-circle px-2 flex align-center" style="position: absolute;right: 15rpx;bottom: 15rpx;background-color: rgba(0,0,0,0.4);">
+			<text style="width: 20rpx;height: 20rpx;" class="rounded-circle bg-success mr-1"></text>
+			<text class="text-white font-sm">进行中</text>
 		</view>
 	</view>
 </template>
