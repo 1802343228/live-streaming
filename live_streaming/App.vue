@@ -16,8 +16,10 @@ export default {
 </script>
 
 <style>
-	/* 引入自定义图标 */
+	/* #ifndef APP-PLUS-NVUE */
 	@import url("./common/icon.css");
+	/* #endif */
+	
 	/* 自定义样式库 */
 	@import url("./common/free.css");
 	/* 引入公共样式 */

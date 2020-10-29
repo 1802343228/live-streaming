@@ -17,51 +17,69 @@
 		
 		<!-- 直播列表 -->
 		<view class="flex flex-wrap">
-			<view class="list-item" v-for="i in 10" :key="i" @click="openLive">
-				<image src="../../static/me.jpg"
-				style="width: 365rpx;height: 365rpx;"
-				class="rounded"
-				mode="aspectFill"
-				></image>
-				
-				<view class="rounded-circle px-2 flex align-center"
-				style="position: absolute;left: 15rpx;top: 15rpx;background-color: rgba(0,0,0,0.4);"
-				>
-				<text class="iconf  iconbizhongguanli text-warning mr-1"></text>
-				<text class="text-white font-sm">0</text>
-				</view>
-				
-				<view class="rounded-circle px-2 flex align-center"
-				style="position: absolute;right: 15rpx;top: 15rpx;background-color: rgba(0,0,0,0.4);"
-				>
-					<text class="font-sm text-white">人气：</text>
-					<text class="text-white font-sm">0</text>
-				</view>
-				
-				<view class="rounded-circle flex align-center"
-				style="position: absolute;left: 15rpx;bottom: 15rpx;"
-				>
-				<text class="text-white font">标题</text>
-				</view>
-				
-				<view class="rounded-circle px-2 flex align-center"
-				style="position: absolute;right: 15rpx;bottom: 15rpx;background-color: rgba(0,0,0,0.4);"
-				>
-				<text style="width: 20rpx;height: 20rpx;"
-				class="rounded-circle bg-danger mr-1"
-				></text>
-				<text class="text-white font-sm">已结束</text>
-				</view>
-			</view>
-		</view>
+		<f-list v-for="(item, index) in list" :key="index" :item="item" :index="index" @click="openLive()"></f-list>
+	</view>
 	</view>
 </template>
 
 <script>
+	import fList from '../../components/common/f-list.vue'
 	export default {
+		components:{
+			fList
+		},
 		data() {
 			return {
-				
+				list:[
+					{
+						img:'../../static/me.jpg',
+						title:'标题',
+						popularity:0,
+						view:0
+					},
+					{
+						img:'../../static/me.jpg',
+						title:'标题',
+						popularity:0,
+						view:0
+					},
+					{
+						img:'../../static/me.jpg',
+						title:'标题',
+						popularity:0,
+						view:0
+					},
+					{
+						img:'../../static/me.jpg',
+						title:'标题',
+						popularity:0,
+						view:0
+					},
+					{
+						img:'../../static/me.jpg',
+						title:'标题',
+						popularity:0,
+						view:0
+					},
+					{
+						img:'../../static/me.jpg',
+						title:'标题',
+						popularity:0,
+						view:0
+					},
+					{
+						img:'../../static/me.jpg',
+						title:'标题',
+						popularity:0,
+						view:0
+					},
+					{
+						img:'../../static/me.jpg',
+						title:'标题',
+						popularity:0,
+						view:0
+					}
+				]
 			}
 		},
 		methods: {
@@ -75,11 +93,11 @@
 </script>
 
 <style>
-.list-item{
-    width: 375rpx;
-    height: 375rpx;
-    padding: 5rpx;
-    box-sizing: border-box;
-    position: relative;
-  }
+.list-item {
+	width: 375rpx;
+	height: 375rpx;
+	padding: 5rpx;
+	box-sizing: border-box;
+	position: relative;
+}
 </style>
