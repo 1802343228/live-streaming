@@ -3,7 +3,7 @@
 		<image src="../../static/me.jpg" style="width: 365rpx;height: 365rpx;" class="rounded" mode="aspectFill"></image>
 	
 		<view class="rounded-circle px-2 flex align-center" style="position: absolute;left: 15rpx;top: 15rpx;background-color: rgba(0,0,0,0.4);">
-			<text class="iconf  iconbizhongguanli text-warning mr-1"></text>
+			<text class="iconfont iconbizhongguanli text-warning mr-1"></text>
 			<text class="text-white font-sm">{{item.title}}</text>
 		</view>
 	

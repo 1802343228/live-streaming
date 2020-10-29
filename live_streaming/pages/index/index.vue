@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view>
-			<image src="../../static/Dingtalk_20201028180805.jpg" class="img" style="width: 750rpx;height: 300rpx;"></image>
+			<image src="../../static/lunbo2.jpg" class="img" style="width: 750rpx;height: 300rpx;"></image>
 		</view>
 		<!-- 轮播图 -->
 		<!-- <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="200"
