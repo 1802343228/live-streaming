@@ -96,7 +96,9 @@
 				</swiper>
 
 				<view style="height: 100rpx;" class="flex align-center justify-end">
-					<view class="flex align-center justify-center py-2 px-2 rounded bg-warning"><text class="font">充值</text></view>
+					<view class="flex align-center justify-center py-2 px-2 rounded bg-warning" @click="openCoin">
+						<text class="font">充值</text>
+						</view>
 					<view class="flex align-center justify-center py-2 px-2 rounded bg-main" @click="sendGift"><text class="font text-white">发送</text></view>
 				</view>
 			</view>
@@ -173,6 +175,11 @@ export default {
 			uni.navigateBack({
 				delta: 1
 			});
+		},
+		openCoin() {
+			uni.navigateTo({
+				url:'../coin/coin'
+			})
 		}
 	},
 	mounted() {
