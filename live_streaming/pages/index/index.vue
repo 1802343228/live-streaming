@@ -33,58 +33,58 @@
 				list:[
 					{
 						img:'../../static/me.jpg',
-						title:'标题',
-						popularity:0,
-						view:0,
+						title:'游戏',
+						popularity:30,
+						view:10,
 						isLive:true
 					},
 					{
 						img:'../../static/bg.jpg',
-						title:'标题',
-						popularity:0,
-						view:0,
+						title:'游戏',
+						popularity:10,
+						view:10,
 						isLive:false
 					},
 					{
 						img:'../../static/bg1.jpg',
-						title:'标题',
-						popularity:0,
-						view:0,
+						title:'游戏',
+						popularity:110,
+						view:110,
 						isLive:false
 					},
 					{
 						img:'../../static/bg2.png',
-						title:'标题',
-						popularity:0,
-						view:0,
+						title:'生活',
+						popularity:220,
+						view:220,
 						isLive:true
 					},
 					{
 						img:'../../static/bg3.png',
-						title:'标题',
-						popularity:0,
-						view:0,
+						title:'生活',
+						popularity:110,
+						view:110,
 						isLive:false
 					},
 					{
 						img:'../../static/bg3.png',
 						title:'标题',
-						popularity:0,
-						view:0,
+						popularity:1110,
+						view:1110,
 						isLive:false
 					},
 					{
 						img:'../../static/bg3.png',
-						title:'标题',
-						popularity:0,
-						view:0,
+						title:'游戏',
+						popularity:100,
+						view:110,
 						isLive:false
 					},
 					{
 						img:'../../static/bg3.png',
-						title:'标题',
-						popularity:0,
-						view:0,
+						title:'生活',
+						popularity:10,
+						view:10,
 						isLive:false
 					}
 				]
