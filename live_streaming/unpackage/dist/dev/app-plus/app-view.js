@@ -1593,7 +1593,7 @@ var ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(/*! ../../static/bg3.png
 exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-exports.push([module.i, "\n.top{\r\n\twidth: 750rpx;\r\n\theight: 260rpx;\r\n\tbackground-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n\tbackground-image: -webkit-linear-gradient(left,#BA7ACE 0%,#8745FF 100%);\r\n\tbackground-image: linear-gradient(to right,#BA7ACE 0%,#8745FF 100%);\n}\r\n", ""]);
+exports.push([module.i, "\n.top{\r\n\twidth: 750rpx;\r\n\theight: 260rpx;\r\n\tbackground-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n\tbackground-image: -webkit-linear-gradient(left,#789AA1 0%,#00b4ab 100%);\r\n\tbackground-image: linear-gradient(to right,#789AA1 0%,#00b4ab 100%);\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 

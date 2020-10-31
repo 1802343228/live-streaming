@@ -82,7 +82,7 @@
 								class="flex flex-column justify-center align-center"
 								v-for="(item, index) in gifts"
 								:key="index"
-								:class="giftActiveId === item.id ? 'border-main' : ''"
+								:class="giftActiveId === item.id ? 'border border-main' : ''"
 								@click="giftActiveId = item.id"
 							>
 								<image :src="item.image" style="width: 100rpx;height: 100rpx;" class="rounded"></image>

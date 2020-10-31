@@ -66,6 +66,6 @@
 	width: 750rpx;
 	height: 260rpx;
 	background-image: url(../../static/bg3.png);
-	background-image: linear-gradient(to right,#BA7ACE 0%,#8745FF 100%);
+	background-image: linear-gradient(to right,#789AA1 0%,#00b4ab 100%);
 }
 </style>
