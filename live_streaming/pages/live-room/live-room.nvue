@@ -64,7 +64,7 @@
 		<view style="position: fixed;left: 0;bottom: 0;right: 0;height: 120rpx;" class="flex align-center justify-between">
 			<view class="flex-1 flex flex-column align-center justify-center"
 			v-for="(item,index) in btns" :key="index"
-			@click="handleBottomEvent)item"
+			@click="handleBottomEvent(item)"
 			>
 			<text class="iconfont text-white mb-1">{{item.icon}}</text>
 			<text class="text-white font">{{item.name}}</text>
@@ -207,7 +207,7 @@ export default {
 	onReady() {
 		this.context = uni.createLivePusherContext('livePusher',this)
 		this.startPreview()
-	}
+	},
 	methods: {
 		handleBottomEvent(item) {
 			this[item.event](item.params)

@@ -1,5 +1,7 @@
 'use strict'
 
+const await = require('await-stream-ready/lib/await')
+
 
 const Controller = require('egg').Controller
 
@@ -122,6 +124,17 @@ class UserController extends Controller {
 
     ctx.apiSuccess(user)
   }
+
+  async logout() {
+    const{ctx,service} = this
+    let current_user_id = ctx.authUser.id
+    if(!(await service.cache.remove('user_'+current_user_id))) {
+      ctx.throw(400,'退出登录失败')
+    }
+
+    ctx.apiSuccess('ok')
+  }
+
 }
 
 module.exports = UserController

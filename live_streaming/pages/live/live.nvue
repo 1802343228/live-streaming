@@ -1,6 +1,6 @@
 <template>
 	<view class="flex-1">
-		<video class="flex-1" src="http://ivi.bupt.edu.cn/hls/btv2hd.m3u8" autoplay controls="false"></video>
+		<video class="flex-1" src="https://oupai.utools.club/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8" autoplay controls="false"></video>
 		<!-- 头部 -->
 		<view style="position: fixed;left: 0;right: 0;" :style="'top:' + statusBarHeight + 'px'">
 			<!-- 个人信息|观看详细信息 -->
@@ -124,7 +124,8 @@ export default {
 			statusBarHeight: 0,
 			content: "",
 			gifts: [],
-			giftActiveId: 0
+			giftActiveId: 0,
+			url:''
 		};
 	},
 	methods: {
@@ -194,10 +195,14 @@ export default {
 			});
 		}, 3000);
 	},
-	onLoad() {
+	onLoad(e) {
 		let res = uni.getSystemInfoSync();
 		this.statusBarHeight = res.statusBarHeight;
 		this.gifts = myGifts;
+		
+		console.log(e);
+		let url = e
+		this.url = url
 	}
 };
 </script>

@@ -20,7 +20,9 @@
 		></live-pusher>
 
 		<view style="position: fixed;left: 0;right: 0;height: 500rpx;" :style="'top:' + statusBarHeight + 'px;'">
-			<view class="flex align-center justify-center" style="width: 90rpx;height: 90rpx;"><text class="iconfont text-white">&#xe607;</text></view>
+			<view class="flex align-center justify-center" style="width: 90rpx;height: 90rpx;">
+				<text @click="back(e)" class="iconfont text-white">&#xe607;</text>
+				</view>
 
 			<view class="position-absolute rounded p-2 flex align-center" style="left: 90rpx;right: 100rpx;height: 160rpx;background-color: rgba(0,0,0,0.2);">
 				<view style="height: 120rpx;width: 120rpx;" class="position-relative rounded">
@@ -54,7 +56,7 @@
 			</view>
 		</view>
 
-		<view class="position-fixed bg-main flex align-center justify-center rounded-circle" style="left: 100rpx;right: 100rpx;bottom: 100rpx;height: 120rpx;">
+		<view @click="openLiveRoom(e)" class="position-fixed bg-main flex align-center justify-center rounded-circle" style="left: 100rpx;right: 100rpx;bottom: 100rpx;height: 120rpx;">
 			<text class="text-white font-md">开始视频直播</text>
 		</view>
 		
@@ -127,7 +129,6 @@ export default {
 			popupType:"mode"
 		};
 	},
-	methods: {},
 	onLoad() {
 		let res = uni.getSystemInfoSync();
 		this.windowHeight = res.windowHeight;
@@ -191,6 +192,23 @@ export default {
 		},
 		handleSliderChange(e){
 			this[this.popupType] = e.detail.value
+		},
+		openLiveRoom(e){
+			console.log('进入主播间');
+			uni.navigateTo({
+				url:'../live-room/live-room?options='+JSON.stringify({
+					mode:this.mode,
+					position:this.position,
+					beauty:this.beauty,
+					whiteness:this.whiteness
+				}),
+			});
+		},
+			
+		back(e) {
+			uni.navigateBack({
+				delta:1
+			})
 		}
 	}
 };

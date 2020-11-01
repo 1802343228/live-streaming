@@ -30,9 +30,11 @@
 		},
 		data() {
 			return {
+				url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
 				list:[
 					{
 						img:'../../static/me.jpg',
+						url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
 						title:'游戏',
 						popularity:30,
 						view:10,
@@ -40,6 +42,7 @@
 					},
 					{
 						img:'../../static/bg.jpg',
+						url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
 						title:'游戏',
 						popularity:10,
 						view:10,
@@ -47,6 +50,7 @@
 					},
 					{
 						img:'../../static/bg1.jpg',
+						url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
 						title:'游戏',
 						popularity:110,
 						view:110,
@@ -54,6 +58,7 @@
 					},
 					{
 						img:'../../static/bg2.png',
+						url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
 						title:'生活',
 						popularity:220,
 						view:220,
@@ -61,6 +66,7 @@
 					},
 					{
 						img:'../../static/bg3.png',
+						url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
 						title:'生活',
 						popularity:110,
 						view:110,
@@ -68,6 +74,7 @@
 					},
 					{
 						img:'../../static/bg3.png',
+						url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
 						title:'标题',
 						popularity:1110,
 						view:1110,
@@ -75,6 +82,7 @@
 					},
 					{
 						img:'../../static/bg3.png',
+						url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
 						title:'游戏',
 						popularity:100,
 						view:110,
@@ -82,6 +90,7 @@
 					},
 					{
 						img:'../../static/bg3.png',
+						url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
 						title:'生活',
 						popularity:10,
 						view:10,
@@ -93,7 +102,7 @@
 		methods: {
 			openLive() {
 				uni.navigateTo({
-					url:'../live/live'
+					url:'../live/live?url='+this.url
 				})
 			}
 		}
