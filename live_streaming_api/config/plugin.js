@@ -6,7 +6,7 @@ module.exports = {
     enable: true,
     package: 'egg-cors',
   },
-  sequelize : {
+  sequelize: {
     enable: true,
     package: 'egg-sequelize',
   },
@@ -14,17 +14,13 @@ module.exports = {
     enable: true,
     package: 'egg-valparams',
   },
-  redis: {
-    enable: true,
-    package: 'egg-redis',
-  },
   jwt: {
     enable: true,
     package: 'egg-jwt',
   },
-  oss: {
+  redis: {
     enable: true,
-    package: 'egg-oss',
+    package: 'egg-redis',
   },
 };
 

@@ -10,25 +10,31 @@ module.exports = (appInfo) => {
    **/
   const config = (exports = {})
 
+
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1603251908901_4149'
+  config.keys = appInfo.name + '_1604158088886_8645'
+
 
   // add your middleware config here
-  // config.middleware = ['errorHandler', 'auth']
   config.middleware = ['errorHandler']
+
 
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
   }
 
+
   config.security = {
     // 关闭 csrf
     csrf: {
-      enable: false,
+      headerName: 'x-csrf-token',
+      ignore: (ctx) => {
+        return ctx.request.url.startsWith('/api')
+      },
     },
     // 跨域白名单
-    domainWhiteList: ['http://localhost:3333'],
+    // domainWhiteList: ['http://localhost:3000'],
   }
   // 允许跨域的方法
   config.cors = {
@@ -36,13 +42,14 @@ module.exports = (appInfo) => {
     allowMethods: 'GET, PUT, POST, DELETE, PATCH',
   }
 
+
   config.sequelize = {
     dialect: 'mysql',
     host: '127.0.0.1',
     username: 'root',
     password: '123456',
     port: 3306,
-    database: 'live_streaming',
+    database: 'live_stream',
     // 中国时区
     timezone: '+08:00',
     define: {
@@ -60,96 +67,52 @@ module.exports = (appInfo) => {
     },
   }
 
-  // 参数校验
-  config.valpaarams = {
+
+  config.valparams = {
     locale: 'zh-cn',
     throwError: true,
   }
 
-  // 随机密钥
+
   config.crypto = {
     secret: 'qhdgw@45ncashdaksh2!#@3nxjdas*_672',
   }
 
-  // redis存储
-  // config.redis = {
-  //   client: {
-  //     port: 6379, // Redis port
-  //     host: '127.0.0.1', // Redis host
-  //     password: 'auth',
-  //     db: 0,
-  //   },
-  // }
-  // jwt
+
   config.jwt = {
     secret: 'qhdgw@45ncashdaksh2!#@3nxjdas*_672',
   }
 
-  // 这些断点的请求需要 token 鉴权
-  // config.auth = {
-  //   match: ['/logout', '/upload', '/getSize', '/file', '/share'],
-  // }
-  // oss配置
-  config.oss = {
+
+  // redis存储
+  config.redis = {
     client: {
-      // accessKeyId: 'LTAI4G4j1GuS21gFVBoM4Njf',
-      // accessKeySecret: 'Ws0Vnbtwz1Q5fVCCbseZJ6eSEiBG3X',
-      // bucket: 'xunmimi',
-      // endpoint: 'oss-cn-hangzhou.aliyuncs.com',
-      // timeout: '60s',
-       accessKeyId: 'LTAI4G9xYCnM3fkoYhPaPEmi',
-      accessKeySecret: '17cATaA0znoxqjed0fh4Kc1xwY44tD',
-      bucket: 'crq',
-      endpoint: 'oss-cn-beijing.aliyuncs.com',
-      timeout: '60s',
+      port: 6379, // Redis port
+      host: '127.0.0.1', // Redis host
+      password: '',
+      db: 2,
     },
   }
-
-  // 上传格式和大小限制
-  config.multipart = {
-    // fileSize: '50mb',
-    fileSize: 1048576000,
-    // mode: 'stream',
-    mode: 'file',
-    fileExtensions: [
-      // 允许上传的图片类型
-      '.jpg',
-      '.jpeg',
-      '.png',
-      '.gif',
-      '.bmp',
-      '.wbmp',
-      '.webp',
-      '.tif',
-      '.psd',
-      // 允许上传的文本类型
-      '.svg',
-      '.js',
-      '.jsx',
-      '.json',
-      '.css',
-      '.less',
-      '.html',
-      '.htm',
-      '.xml',
-      '.txt',
-      '.doc',
-      '.docx',
-      '.md',
-      '.pdf',
-      '.xls',
-      '.xlsx',
-      // 允许上传的压缩文件类型
-      '.zip',
-      '.gz',
-      '.tgz',
-      '.gzip',
-      // 允许上传的音视频文件类型
-      '.mp3',
-      '.mp4',
-      '.avi',
-    ],
-  }
+  
+  // 流媒体配置
+  config.mediaServer = {
+    rtmp: {
+      port: 23480,
+      chunk_size: 60000,
+      gop_cache: true,
+      ping: 30,
+      ping_timeout: 60
+    },
+    http: {
+      port: 23481,
+      allow_origin: '*'
+    },
+    auth: {
+      play: true,
+      publish: true,
+      secret: 'nodemedia2017privatekey',
+    },
+  };
 
   return {
     ...config,
