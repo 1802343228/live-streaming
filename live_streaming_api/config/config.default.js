@@ -94,6 +94,10 @@ module.exports = (appInfo) => {
     },
   }
   
+  config.middleware=['errorHandler','auth']
+  config.auth={
+    match:['/api/live/create'],
+  }
   // 流媒体配置
   config.mediaServer = {
     rtmp: {
