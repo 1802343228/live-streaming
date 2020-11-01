@@ -43,11 +43,11 @@
 					<text class="iconfont text-white mb-1">&#xe60c;</text>
 					<text class="text-white font">画质</text>
 				</view>
-				<view style="height: 120rpx;width: 100rpx;" class="flex flex-column align-center justify-center" @click="openPopup('beauty')">
+				<view style="height: 120rpx;width: 100rpx;" class="flex flex-column align-center justify-center" @click="openPopup('whiteness')">
 					<text class="iconfont text-white mb-1">&#xe632;</text>
 					<text class="text-white font">美白</text>
 				</view>
-				<view style="height: 120rpx;width: 100rpx;" class="flex flex-column align-center justify-center" @click="openPopup('whiteness')">
+				<view style="height: 120rpx;width: 100rpx;" class="flex flex-column align-center justify-center" @click="openPopup('beauty')">
 					<text class="iconfont text-white mb-1">&#xe631;</text>
 					<text class="text-white font">美颜</text>
 				</view>
