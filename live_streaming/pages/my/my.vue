@@ -11,7 +11,7 @@
 				<text class="font text-muted">登录体验更多功能</text>
 			</view>
 			<view class="ml-auto mr-3">
-				<view style="color: #0F6674;border-color: #0F6674;" class="border rounded flex align-center justify-center p-2" hover-class="bg-green" @click="openLogin">
+				<view class="border border-main rounded flex align-center justify-center p-2" hover-class="bg-green" @click="openLogin">
 					<text class="text-main font">立即登录</text>
 				</view>
 			</view>
@@ -93,6 +93,6 @@ export default {
 	width: 750rpx;
 	height: 260rpx;
 	background-image: url(../../static/bg3.png);
-	background-image: linear-gradient(to right, #789aa1 0%, #00b4ab 100%);
+	background-image: linear-gradient(to right, #BA7ACE 0%, #8745FF 100%);
 }
 </style>

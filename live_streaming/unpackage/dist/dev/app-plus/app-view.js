@@ -1288,10 +1288,6 @@ var render = function() {
                     "v-uni-view",
                     {
                       staticClass: _vm._$g(9, "sc"),
-                      staticStyle: {
-                        color: "#0F6674",
-                        "border-color": "#0F6674"
-                      },
                       attrs: { "hover-class": "bg-green", _i: 9 },
                       on: {
                         click: function($event) {
@@ -1689,7 +1685,7 @@ var ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(/*! ../../static/bg3.png
 exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-exports.push([module.i, "\n.top {\r\n\twidth: 750rpx;\r\n\theight: 260rpx;\r\n\tbackground-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n\tbackground-image: -webkit-linear-gradient(left, #789aa1 0%, #00b4ab 100%);\r\n\tbackground-image: linear-gradient(to right, #789aa1 0%, #00b4ab 100%);\n}\r\n", ""]);
+exports.push([module.i, "\n.top {\r\n\twidth: 750rpx;\r\n\theight: 260rpx;\r\n\tbackground-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n\tbackground-image: -webkit-linear-gradient(left, #BA7ACE 0%, #8745FF 100%);\r\n\tbackground-image: linear-gradient(to right, #BA7ACE 0%, #8745FF 100%);\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2854,7 +2850,7 @@ var render = function() {
         "v-uni-view",
         {
           staticClass: _vm._$g(1, "sc"),
-          staticStyle: { height: "350rpx" },
+          staticStyle: { width: "90rpx", height: "90rpx" },
           attrs: { _i: 1 }
         },
         [
@@ -2862,68 +2858,190 @@ var render = function() {
             "v-uni-text",
             {
               staticClass: _vm._$g(2, "sc"),
-              staticStyle: { "font-size": "50rpx" },
-              attrs: { _i: 2 }
+              attrs: { _i: 2 },
+              on: {
+                click: function($event) {
+                  return _vm.$handleViewEvent($event)
+                }
+              }
             },
-            [_vm._v("LIVE-SHOW")]
+            [_vm._v("")]
           )
         ],
         1
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(3, "sc"), attrs: { _i: 3 } },
+        {
+          staticClass: _vm._$g(3, "sc"),
+          staticStyle: { height: "350rpx" },
+          attrs: { _i: 3 }
+        },
         [
-          _c("v-uni-input", {
-            staticClass: _vm._$g(4, "sc"),
-            staticStyle: { height: "100rpx" },
-            attrs: { type: "text", placeholder: "请输入用户名", _i: 4 },
-            model: {
-              value: _vm._$g(4, "v-model"),
-              callback: function($$v) {
-                _vm.$handleVModelEvent(4, $$v)
-              },
-              expression: "form.username"
-            }
-          }),
-          _c("v-uni-input", {
-            staticClass: _vm._$g(5, "sc"),
-            staticStyle: { height: "100rpx" },
-            attrs: { type: "pasgsword", placeholder: "请输入密码", _i: 5 },
-            model: {
-              value: _vm._$g(5, "v-model"),
-              callback: function($$v) {
-                _vm.$handleVModelEvent(5, $$v)
-              },
-              expression: "form.password"
-            }
-          }),
-          _vm._$g(6, "i")
-            ? _c("v-uni-input", {
+          _c(
+            "v-uni-text",
+            {
+              staticClass: _vm._$g(4, "sc"),
+              staticStyle: { "font-size": "50rpx" },
+              attrs: { _i: 4 }
+            },
+            [_vm._v(_vm._$g(4, "t0-0"))]
+          )
+        ],
+        1
+      ),
+      _vm._$g(5, "i")
+        ? _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
+            [
+              _c("v-uni-input", {
                 staticClass: _vm._$g(6, "sc"),
                 staticStyle: { height: "100rpx" },
-                attrs: {
-                  type: "password",
-                  placeholder: "请输入确认密码",
-                  _i: 6
-                },
+                attrs: { type: "text", placeholder: "昵称/手机号/邮箱", _i: 6 },
                 model: {
                   value: _vm._$g(6, "v-model"),
                   callback: function($$v) {
                     _vm.$handleVModelEvent(6, $$v)
                   },
-                  expression: "form.repassword"
+                  expression: "form.username"
                 }
-              })
-            : _vm._e()
-        ],
-        1
-      ),
+              }),
+              _c(
+                "v-uni-view",
+                { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
+                [
+                  _c("v-uni-input", {
+                    staticClass: _vm._$g(8, "sc"),
+                    staticStyle: { height: "100rpx", width: "65%" },
+                    attrs: {
+                      type: "password",
+                      placeholder: "请输入密码",
+                      _i: 8
+                    },
+                    model: {
+                      value: _vm._$g(8, "v-model"),
+                      callback: function($$v) {
+                        _vm.$handleVModelEvent(8, $$v)
+                      },
+                      expression: "form.password"
+                    }
+                  }),
+                  _c(
+                    "v-uni-text",
+                    { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
+                    [_vm._v("忘记密码")]
+                  )
+                ],
+                1
+              ),
+              _vm._$g(10, "i")
+                ? _c("v-uni-input", {
+                    staticClass: _vm._$g(10, "sc"),
+                    staticStyle: { height: "100rpx" },
+                    attrs: {
+                      type: "password",
+                      placeholder: "请输入确认密码",
+                      _i: 10
+                    },
+                    model: {
+                      value: _vm._$g(10, "v-model"),
+                      callback: function($$v) {
+                        _vm.$handleVModelEvent(10, $$v)
+                      },
+                      expression: "form.repassword"
+                    }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
+        : _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(11, "sc"), attrs: { _i: 11 } },
+            [
+              _c(
+                "v-uni-view",
+                { staticClass: _vm._$g(12, "sc"), attrs: { _i: 12 } },
+                [
+                  _c(
+                    "v-uni-text",
+                    { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } },
+                    [_vm._v("+86")]
+                  ),
+                  _c("v-uni-input", {
+                    staticClass: _vm._$g(14, "sc"),
+                    staticStyle: { height: "100rpx" },
+                    attrs: { type: "text", placeholder: "手机号", _i: 14 },
+                    model: {
+                      value: _vm._$g(14, "v-model"),
+                      callback: function($$v) {
+                        _vm.$handleVModelEvent(14, $$v)
+                      },
+                      expression: "form.username"
+                    }
+                  })
+                ],
+                1
+              ),
+              _c(
+                "v-uni-view",
+                { staticClass: _vm._$g(15, "sc"), attrs: { _i: 15 } },
+                [
+                  _c("v-uni-input", {
+                    staticClass: _vm._$g(16, "sc"),
+                    staticStyle: { height: "100rpx", width: "60%" },
+                    attrs: {
+                      type: "password",
+                      placeholder: "请输入密码",
+                      _i: 16
+                    },
+                    model: {
+                      value: _vm._$g(16, "v-model"),
+                      callback: function($$v) {
+                        _vm.$handleVModelEvent(16, $$v)
+                      },
+                      expression: "form.password"
+                    }
+                  }),
+                  _c(
+                    "v-uni-text",
+                    {
+                      staticClass: _vm._$g(17, "sc"),
+                      staticStyle: { height: "40rpx" },
+                      attrs: { _i: 17 }
+                    },
+                    [_vm._v("获取验证码")]
+                  )
+                ],
+                1
+              ),
+              _vm._$g(18, "i")
+                ? _c("v-uni-input", {
+                    staticClass: _vm._$g(18, "sc"),
+                    staticStyle: { height: "100rpx" },
+                    attrs: {
+                      type: "password",
+                      placeholder: "请输入确认密码",
+                      _i: 18
+                    },
+                    model: {
+                      value: _vm._$g(18, "v-model"),
+                      callback: function($$v) {
+                        _vm.$handleVModelEvent(18, $$v)
+                      },
+                      expression: "form.repassword"
+                    }
+                  })
+                : _vm._e()
+            ],
+            1
+          ),
       _c(
         "v-uni-view",
         {
-          staticClass: _vm._$g(7, "sc"),
-          attrs: { _i: 7 },
+          staticClass: _vm._$g(19, "sc"),
+          attrs: { _i: 19 },
           on: {
             click: function($event) {
               return _vm.$handleViewEvent($event)
@@ -2934,15 +3052,14 @@ var render = function() {
           _c(
             "v-uni-view",
             {
-              staticClass: _vm._$g(8, "sc"),
-              staticStyle: { "background-color": "#0F6674" },
-              attrs: { "hover-class": "bg-main-hover", _i: 8 }
+              staticClass: _vm._$g(20, "sc"),
+              attrs: { "hover-class": "bg-main-hover", _i: 20 }
             },
             [
               _c(
                 "v-uni-text",
-                { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
-                [_vm._v(_vm._$g(9, "t0-0"))]
+                { staticClass: _vm._$g(21, "sc"), attrs: { _i: 21 } },
+                [_vm._v(_vm._$g(21, "t0-0"))]
               )
             ],
             1
@@ -2952,20 +3069,89 @@ var render = function() {
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(10, "sc"), attrs: { _i: 10 } },
+        { staticClass: _vm._$g(22, "sc"), attrs: { _i: 22 } },
         [
           _c(
             "v-uni-text",
             {
-              staticClass: _vm._$g(11, "sc"),
-              attrs: { _i: 11 },
+              staticClass: _vm._$g(23, "sc"),
+              attrs: { _i: 23 },
               on: {
                 click: function($event) {
                   return _vm.$handleViewEvent($event)
                 }
               }
             },
-            [_vm._v(_vm._$g(11, "t0-0"))]
+            [_vm._v(_vm._$g(23, "t0-0"))]
+          ),
+          _c(
+            "v-uni-text",
+            { staticClass: _vm._$g(24, "sc"), attrs: { _i: 24 } },
+            [_vm._v("|")]
+          ),
+          _c(
+            "v-uni-text",
+            {
+              staticClass: _vm._$g(25, "sc"),
+              attrs: { _i: 25 },
+              on: {
+                click: function($event) {
+                  return _vm.$handleViewEvent($event)
+                }
+              }
+            },
+            [_vm._v(_vm._$g(25, "t0-0"))]
+          )
+        ],
+        1
+      ),
+      _c(
+        "v-uni-view",
+        { staticClass: _vm._$g(26, "sc"), attrs: { _i: 26 } },
+        [
+          _c(
+            "v-uni-text",
+            { staticClass: _vm._$g(27, "sc"), attrs: { _i: 27 } },
+            [_vm._v("————社交账号登录————")]
+          )
+        ],
+        1
+      ),
+      _c(
+        "v-uni-view",
+        { staticClass: _vm._$g(28, "sc"), attrs: { _i: 28 } },
+        [
+          _c("v-uni-image", {
+            staticClass: _vm._$g(29, "sc"),
+            staticStyle: { width: "100rpx", height: "100rpx" },
+            attrs: { src: _vm._$g(29, "a-src"), _i: 29 }
+          }),
+          _c("v-uni-image", {
+            staticClass: _vm._$g(30, "sc"),
+            staticStyle: { width: "100rpx", height: "100rpx" },
+            attrs: { src: _vm._$g(30, "a-src"), _i: 30 }
+          }),
+          _c("v-uni-image", {
+            staticClass: _vm._$g(31, "sc"),
+            staticStyle: { width: "100rpx", height: "100rpx" },
+            attrs: { src: _vm._$g(31, "a-src"), _i: 31 }
+          })
+        ],
+        1
+      ),
+      _c(
+        "v-uni-view",
+        {
+          staticClass: _vm._$g(32, "sc"),
+          staticStyle: { padding: "110rpx" },
+          attrs: { _i: 32 }
+        },
+        [
+          _vm._v("注册即代表您同意"),
+          _c(
+            "v-uni-text",
+            { staticStyle: { color: "#0062CC" }, attrs: { _i: 33 } },
+            [_vm._v("《XXX社区协议》")]
           )
         ],
         1
@@ -3062,7 +3248,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../../Program/HBuilderX.2.8.11.20200907/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.container {\r\n\twidth: 750rpx;\r\n\theight: 100vh;\r\n\tmargin: 0;\r\n\tpadding: 100rpx 0 0 0;\r\n\tbackground-size: cover;\r\n\tbackground-image: -webkit-linear-gradient(top, #789aa1 0%, #00b4ab 100%);\r\n\tbackground-image: linear-gradient(to bottom, #789aa1 0%, #00b4ab 100%);\n}\r\n", ""]);
+exports.push([module.i, "\n.container {\r\n\twidth: 750rpx;\r\n\theight: 100vh;\r\n\tmargin: 0;\r\n\tpadding: 100rpx 0 0 0;\r\n\tbackground-size: cover;\r\n\t/* background-image: linear-gradient(to bottom, #BA7ACE 0%, #8745FF 100%); */\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 

@@ -1,20 +1,52 @@
 <template>
 	<view class="container">
-		<view class="flex align-center justify-center" style="height: 350rpx;"><text style="font-size: 50rpx;" class="text-light">LIVE-SHOW</text></view>
-		<view class="px-3">
-			<input type="text" v-model="form.username" class="bg-light px-3 mb-4 font rounded" placeholder="请输入用户名" style="height: 100rpx;" />
-			<input type="pasgsword" v-model="form.password" class="bg-light px-3 mb-4 font rounded" placeholder="请输入密码" style="height: 100rpx;" />
-			<input v-if="type != 'login'" type="password" v-model="form.repassword" class="bg-light px-3 mb-4 font rounded" placeholder="请输入确认密码" style="height: 100rpx;" />
+		<view class="flex align-center justify-center" style="width: 90rpx;height: 90rpx;">
+			<text @click="back(e)" class="iconfont text-dark">&#xe607;</text>
+			</view>
+		<view class="flex align-center justify-center" style="height: 350rpx;">
+			<text style="font-size: 50rpx;" class="text-dark">{{ loginType === "psw" ? "账号密码登录" : "手机验证码登录" }}</text></view>
+		<view class="px-3" v-if="loginType === 'psw'">
+			<input type="text" v-model="form.username" class=" px-3 mb-4 font rounded border-bottom" placeholder="昵称/手机号/邮箱" style="height: 100rpx;" />
+			<view class="border-bottom flex">
+			<input type="password" v-model="form.password" class=" px-3 font rounded" placeholder="请输入密码" style="height: 100rpx;width: 65%;" />
+			<text class="text-light-muted p-2">忘记密码</text>
+			</view>
+			<input v-if="type != 'login'" type="password" v-model="form.repassword" class="bg-light px-3 mb-4 font rounded border-bottom" placeholder="请输入确认密码" style="height: 100rpx;" />
+		</view>
+		
+		<view class="px-3" v-else>
+			<view class="border-bottom flex">
+			<text class="font-weight-bold p-3">+86</text>
+			<input type="text" v-model="form.username" class="px-3 font rounded" placeholder="手机号" style="height: 100rpx;" />
+			</view>
+			<view class="border-bottom flex mt-3">
+			<input type="password" v-model="form.password" class=" px-3 font rounded" placeholder="请输入密码" style="height: 100rpx;width: 60%;" />
+			<text class="text-light-muted p-2 border bg-hover-light rounded" style="height: 40rpx;">获取验证码</text>
+			</view>
+			<input v-if="type != 'login'" type="password" v-model="form.repassword" class="bg-light px-3 mb-4 font rounded border-bottom" placeholder="请输入确认密码" style="height: 100rpx;" />
 		</view>
 
 		<view class="p-3 flex align-center justify-center" @click="submit">
-			<view style="background-color: #0F6674;" class="rounded p-3 flex align-center justify-center flex-1" hover-class="bg-main-hover">
+			<view class="rounded-circle bg-main p-3 flex align-center justify-center flex-1" hover-class="bg-main-hover">
 				<text class="text-white font-md">{{ type === "login" ? "登 录" : "注 册" }}</text>
 			</view>
 		</view>
 		<view class="flex align-center justify-center">
-			<text class="text-light-muted font p-2" @click="changeType">{{ type === "login" ? "注册账号" : "去登录" }}</text>
+			<text class="text-hover-dark font p-2" @click="changeLoginType">{{ loginType === "psw" ? "验证码登录" : "账号密码登录登录" }}</text>
+			<text class="text-hover-dark font p-2">|</text>
+			<text class="text-hover-dark font p-2" @click="changeType">{{ type === "login" ? "注册账号" : "去登录" }}</text>
 		</view>
+		<view class="flex align-center justify-center">
+			<text class="text-light-muted p-2">————社交账号登录————</text>
+		</view>
+		<view class="flex align-center justify-center">
+			<image class="p-3" style="width: 100rpx;height: 100rpx;" src="../../static/login/QQ.png"></image>
+			<image class="p-3" style="width: 100rpx;height: 100rpx;" src="../../static/login/微信.png"></image>
+			<image class="p-3" style="width: 100rpx;height: 100rpx;" src="../../static/login/微博.png"></image>
+		</view>
+		<view class="align-center justify-between text-light-muted" style="padding: 110rpx;">
+			注册即代表您同意<text style="color: #0062CC;">《XXX社区协议》</text>
+			</view>
 	</view>
 </template>
 
@@ -23,6 +55,7 @@ export default {
 	data() {
 		return {
 			type: "login",
+			loginType:"psw",
 			form: {
 				username: "",
 				password: "",
@@ -31,8 +64,16 @@ export default {
 		};
 	},
 	methods: {
+		back(e) {
+			uni.navigateBack({
+				delta:1
+			})
+		},
 		changeType() {
 			this.type = this.type === "login" ? "reg" : "login";
+		},
+		changeLoginType(){
+			this.loginType = this.loginType === "psw" ? "phone" : "psw";
 		},
 		submit() {
 			let msg = this.type === 'login' ? '登录' : '注册';
@@ -70,6 +111,6 @@ export default {
 	margin: 0;
 	padding: 100rpx 0 0 0;
 	background-size: cover;
-	background-image: linear-gradient(to bottom, #789aa1 0%, #00b4ab 100%);
+	/* background-image: linear-gradient(to bottom, #BA7ACE 0%, #8745FF 100%); */
 }
 </style>
