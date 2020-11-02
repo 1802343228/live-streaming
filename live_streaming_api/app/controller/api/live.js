@@ -80,11 +80,12 @@ class LiveController extends Controller {
         user_id,
     },
     })
+    console.log("111111111111111111111111111111111")
     console.log(live)
     if(!live) {
       return ctx.apiFail('该直播间不存在')
     }
-    if(live.status === 3){
+    if(live.dataValues.status === 3){
       return ctx.apiFail('该直播间已结束')
     }
     const status = {
@@ -92,7 +93,7 @@ class LiveController extends Controller {
       pause:2,
       stop:3
     }
-    live.status = status[type]
+    live.dataValues.status = status[type]
     await live.save()
     ctx.apiSuccess('ok')
 

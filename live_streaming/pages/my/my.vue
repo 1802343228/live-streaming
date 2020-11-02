@@ -38,6 +38,8 @@
 	</f-list-item>
 	<f-list-item icon="iconmore" title="历史记录"></f-list-item>
 	</view>
+	<f-list-item @tap="logout" title="退出登录"></f-list-item>
+	</view>
 </template>
 
 <script>
@@ -56,7 +58,11 @@
 			this.statusBarHeight = res.statusBarHeight
 		},
 		methods: {
-			
+			logout() {
+				uni.navigateTo({
+					url:'../login/login'
+				})
+			}
 		}
 	}
 </script>
