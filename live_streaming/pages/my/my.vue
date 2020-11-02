@@ -20,7 +20,7 @@
 		<view v-else>
 			<view class="flex align-center">
 				<view class="flex align-center justify-center position-relative" style="width: 180rpx;height: 160rpx;">
-					<image :src="user.avatar || '/static/cover/img1.jpg'" class="rounded-circle" style="width: 130rpx;height: 130rpx;position: absolute;top: -60rpx;"></image>
+					<image :src="user.avatar || '/static/me.jpg'" class="rounded-circle" style="width: 130rpx;height: 130rpx;position: absolute;top: -60rpx;"></image>
 				</view>
 				<view class="flex flex-column">
 					<text class="font-md">{{ user.username }}</text>
@@ -48,6 +48,7 @@
 
 <script>
 import fListItem from "@/components/common/f-list-item.vue";
+import {mapState} from 'vuex';
 export default {
 	components: {
 		fListItem
@@ -60,7 +61,12 @@ export default {
 	onShow() {
 		this.$store.dispatch('getUserInfo');
 	},
-	onLoad() {
+	computed:{
+		...mapState({
+			user:state => state.user
+		})
+	},
+	onLoad() {		
 		let res = uni.getSystemInfoSync();
 		this.statusBarHeight = res.statusBarHeight;
 	},
@@ -71,9 +77,12 @@ export default {
 			})
 		},
 		logout(e) {
-			uni.navigateTo({
-				url: "../login/login"
+			this.$store.dispatch('logout').then(res => {
+				uni.navigateBack({
+					delta:1
+				});
 			});
+			
 		}
 	}
 };

@@ -3,7 +3,7 @@
 		<view class="flex align-center justify-center" style="height: 350rpx;"><text style="font-size: 50rpx;" class="text-light">LIVE-SHOW</text></view>
 		<view class="px-3">
 			<input type="text" v-model="form.username" class="bg-light px-3 mb-4 font rounded" placeholder="请输入用户名" style="height: 100rpx;" />
-			<input type="passsword" v-model="form.password" class="bg-light px-3 mb-4 font rounded" placeholder="请输入密码" style="height: 100rpx;" />
+			<input type="pasgsword" v-model="form.password" class="bg-light px-3 mb-4 font rounded" placeholder="请输入密码" style="height: 100rpx;" />
 			<input v-if="type != 'login'" type="password" v-model="form.repassword" class="bg-light px-3 mb-4 font rounded" placeholder="请输入确认密码" style="height: 100rpx;" />
 		</view>
 

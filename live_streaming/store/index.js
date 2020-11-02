@@ -9,20 +9,24 @@ export default new Vuex.Store({
 		token:null,
 	},
 	actions:{
-		// logout({state}) {
-		// 	$H.post('/logout',{},{
-		// 		token:true
-		// 	})
-		// 	state.user = null
-		// 	state.token = null
-		// 	uni.removeStorageSync('user')
-		// 	uni.removeStorageSync('token')
-		// 	uni.removeStorageSync('dirs');
-			
-		// 	uni.reLaunch({
-		// 		url:'/pages/login/login'
-		// 	});
-		// },
+		logout({state}) {
+			$H.post('/logout',{},{
+				token:true,
+				toast:false
+			})
+			state.user = null
+			state.token = null
+			uni.removeStorageSync('user')
+			uni.removeStorageSync('token')
+		},
+		initUser({state}){
+			let user = uni.getStorageSync('user')
+			let token = uni.getStorageSync('token')
+			if(user){
+				state.user = JSON.parse(user)
+				state.token = token
+			}
+		},
 		login({state},user){
 			state.user = user
 			state.token = user.token
@@ -34,7 +38,7 @@ export default new Vuex.Store({
 			state
 		}) {
 			$H.get('/user/info',{
-				token.true,
+				token:true,
 				noJump:true,
 				toast:false
 			}).then(res => {
