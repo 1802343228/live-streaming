@@ -19,7 +19,7 @@
 		</view>
 		<view class="ml-auto mr-3">
 			<view class="border border-main rounded flex align-center justify-center p-2"
-			hover-class="bg-light"
+			hover-class="bg-green"
 			>
 			<text class="text-main font">编辑资料</text>
 			</view>
@@ -37,9 +37,10 @@
 		<text class="text-muted font">0</text>
 	</f-list-item>
 	<f-list-item icon="iconmore" title="历史记录"></f-list-item>
+	
+	<button @click="logout(e)" style="background-color: #789AA1;width: 90%;" class="mt-5 align-center" >退出登录</button>
 	</view>
-	<f-list-item @tap="logout" title="退出登录"></f-list-item>
-	</view>
+	
 </template>
 
 <script>
@@ -58,7 +59,7 @@
 			this.statusBarHeight = res.statusBarHeight
 		},
 		methods: {
-			logout() {
+			logout(e) {
 				uni.navigateTo({
 					url:'../login/login'
 				})

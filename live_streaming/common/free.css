@@ -309,6 +309,7 @@
 .bg-hover-dark { background-color: #1d2124;}
 .bg-white { background-color: #ffffff;}
 .bg-transparent { background-color: transparent;}
+.bg-green{background-color: #0F6674;}
 /* 边框 */
 .border { border-width: 1rpx;border-style: solid;border-color: #dee2e6;}
 .border-top {
