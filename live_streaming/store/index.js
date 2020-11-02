@@ -30,13 +30,21 @@ export default new Vuex.Store({
 			uni.setStorageSync('user',JSON.stringify(user))
 			uni.setStorageSync('token',user.token)
 		},
-		// initUser({state}){
-		// 	let user = uni.getStorageSync('user')
-		// 	if(user){
-		// 		state.user = JSON.parse(user)
-		// 		state.token = state.user.token
-		// 	}
-		// },
+		getUserInfo({
+			state
+		}) {
+			$H.get('/user/info',{
+				token.true,
+				noJump:true,
+				toast:false
+			}).then(res => {
+				state.user = res
+				uni.setStorage({
+					key:"user",
+					data:JSON.stringify(state.user)
+				})
+			})
+		}
 
 	}
 })
