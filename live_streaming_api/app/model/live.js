@@ -72,6 +72,13 @@ module.exports = (app) => {
     // 关联主播
     Live.belongsTo(app.model.User)
   }
+
+  // Live.findOne = function() {
+
+  // }
+  // Live.findAll = function(){
+  //   return Live
+  // }
   
   return Live
 }

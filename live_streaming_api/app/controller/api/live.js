@@ -96,6 +96,25 @@ class LiveController extends Controller {
     ctx.apiSuccess('ok')
 
   }
+
+  async list(){
+    let {ctx,app} = this
+    ctx.validate({
+      page:{
+        required:true,
+        desc:'页码',
+        type:'int',
+      },
+    })
+    let page = ctx.params.page
+    let limit = 10
+    let offset = (page -1) *limit
+    let rows = await app.model.Live.findAll({
+      limit,
+      offset,
+    })
+    ctx.apiSuccess(rows)
+  }
 }
 
 module.exports = LiveController
