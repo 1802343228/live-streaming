@@ -80,6 +80,7 @@ class LiveController extends Controller {
         user_id,
     },
     })
+    console.log(live)
     if(!live) {
       return ctx.apiFail('该直播间不存在')
     }
@@ -114,6 +115,42 @@ class LiveController extends Controller {
       offset,
     })
     ctx.apiSuccess(rows)
+  }
+
+  async read() {
+    const {ctx,app} = this
+    ctx.validate({
+      id:{
+        required:true,
+        desc:'直播间ID',
+        type:'int',
+      },
+    })
+    let id = ctx.params.id
+    let live = await app.model.Live.findOne({
+      where:{
+        id,
+      },
+      include:[
+        {
+          model:app.model.User,
+          attributes:['id','username','avatar'],
+        },
+      ],
+    })
+    if(!live){
+      return ctx.apiFail("该直播间不存在")
+    }
+    //生成前面
+    let sign = null
+    //直播未结束
+    if(live.status !== 3){
+      sign = this.sign(live.key)
+    }
+    ctx.apiSuccess({
+      data:live,
+      sign,
+    })
   }
 }
 
