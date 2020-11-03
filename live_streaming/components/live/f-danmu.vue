@@ -60,18 +60,18 @@
 			}
 		},
 		mounted() {
-			let id = 1
-			let len = this.randomTalk.length
-			setInterval(() => {
-				this.list.push({
-					id:id,
-					name:'观众'+id,
-					content:this.randomTalk[Math.floor(Math.random()*len+1)-1].name
-				})
-				//置于底部
-				this.toBottom()
-				id++
-			},2000)
+			// let id = 1
+			// let len = this.randomTalk.length
+			// setInterval(() => {
+			// 	this.list.push({
+			// 		id:id,
+			// 		name:'观众'+id,
+			// 		content:this.randomTalk[Math.floor(Math.random()*len+1)-1].name
+			// 	})
+			// 	//置于底部
+			// 	this.toBottom()
+			// 	id++
+			// },2000)
 		},
 		methods:{
 			send(data) {

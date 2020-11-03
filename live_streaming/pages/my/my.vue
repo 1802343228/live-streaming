@@ -1,6 +1,11 @@
 <template>
 	<view>
-		<view class="top flex align-center justify-center"></view>
+		<view class="top flex align-center justify-center">
+			<image src="../../static/shezhi.png" 
+			style="width: 60rpx;height: 60rpx;position: absolute;right: 50rpx;top: 60rpx;"
+			@click="goSettings"
+			></image>
+		</view>
 		<view v-if="!user" class="flex align-center">
 			<view class="flex align-center justify-center position-relative" style="width: 180rpx;height: 160rpx;">
 				<image src="../../static/me.jpg" class="rounded-circle" style="width: 145rpx;height: 145rpx;position: absolute;top: -60rpx;"></image>
@@ -83,6 +88,11 @@ export default {
 				});
 			});
 			
+		},
+		goSettings() {
+			uni.navigateTo({
+				url:'../settings/settings'
+			})
 		}
 	}
 };

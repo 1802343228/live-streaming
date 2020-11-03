@@ -70,6 +70,16 @@
             }
             
         }
+        ,{
+            "path" : "pages/settings/settings",
+            "style" :                                                                                    
+            {
+				"app-plus": {
+					"titleNView": false
+				}
+            }
+            
+        }
     ],
 	"globalStyle": {
 		// "navigationBarTextStyle": "white",

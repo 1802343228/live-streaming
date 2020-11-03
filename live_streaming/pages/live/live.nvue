@@ -1,28 +1,38 @@
 <template>
 	<view class="flex-1">
-		<video class="flex-1" src="https://oupai.utools.club/live/K3dEc3K4LdYWqH6WUBqy.flv?sign=1604401063-6602931d6471f324790ac1cd2187644f" autoplay controls="false"></video>
+		<video class="flex-1" src="https://obss.utools.club/live/xoMuwWoQGV4bwKkpogZ5.flv?sign=1604493404-288a92528f376168d7271b4c5091d7f3" autoplay controls="false"></video>
 		<!-- 头部 -->
 		<view style="position: fixed;left: 0;right: 0;" :style="'top:' + statusBarHeight + 'px'">
 			<!-- 个人信息|观看详细信息 -->
 			<view style="height: 80rpx;" class="px-2 flex justify-between align-center">
 				<view style="width: 325rpx;background-color: rgba(0,0,0,0.4);" class="flex rounded-circle">
-					<view class="p"><image src="../../static/me.jpg" style="width: 70rpx;height: 70rpx;" class="rounded-circle"></image></view>
+					<view class="p">
+						<image 
+						:src="detail.user.avatar || '../../static/me.jpg'"
+						 style="width: 70rpx;height: 70rpx;"
+						  class="rounded-circle"></image></view>
 					<view class="flex-1 flex flex-column justify-center">
-						<text class="text-white font">主播昵称</text>
-						<text class="text-white font-sm">100</text>
+						<text class="text-white font">{{detail.user.username}}</text>
+						<text class="text-white font-sm">{{detail.user.look_count}}</text>
 					</view>
 					<view class="p">
-						<view class="rounded-circle flex align-center justify-center bg-danger" style="width: 70rpx;height: 70rpx;"><text class="text-white">+</text></view>
+						<view class="rounded-circle flex align-center justify-center bg-danger" 
+						style="width: 70rpx;height: 70rpx;">
+						<text class="text-white">+</text>
+						</view>
 					</view>
 				</view>
 
 				<view style="width: 325rpx;background-color: rgba(0,0,0,0.44);" class="flex rounded-circle">
 					<scroll-view scroll-x="true" class="flex-1 flex">
-						<view class="p" v-for="i in 20" :key="i"><image src="../../static/me.jpg" style="width: 70rpx;height: 70rpx;" class="rounded-circle"></image></view>
+						<view class="p" v-for="i in 20" :key="i">
+							<image src="../../static/me.jpg"
+							 style="width: 70rpx;height: 70rpx;" class="rounded-circle"></image></view>
 					</scroll-view>
 
 					<view class="p">
-						<view class="rounded-circle flex align-center justify-center bg-danger" style="width: 70rpx;height: 70rpx;">
+						<view class="rounded-circle flex align-center justify-center bg-danger"
+						 style="width: 70rpx;height: 70rpx;">
 							<text class="text-white font-sm">1000</text>
 						</view>
 					</view>
@@ -33,7 +43,8 @@
 			<view style="height: 80rpx;" class="px-2 my-2">
 				<view style="width: 325rpx;background-color: rgba(0,0,0,0.4);" class="flex rounded-circle align-center">
 					<view class="p"><text class="text-warning">金币</text></view>
-					<view class="flex-1 flex flex-column justify-center"><text class="text-white font">100</text></view>
+					<view class="flex-1 flex flex-column justify-center">
+						<text class="text-white font">{{detail.coin}}</text></view>
 				</view>
 			</view>
 
@@ -111,6 +122,8 @@ import fGift from "@/components/live/f-gift.vue";
 import fDanmu from "@/components/live/f-danmu.vue";
 import uniPopup from "@/components/uni-ui/uni-popup/uni-popup.vue";
 import myGifts from "@/common/gift.js";
+import $H from '@/common/request.js';
+import store from '@/store/index.js';
 
 export default {
 	components: {
@@ -125,17 +138,35 @@ export default {
 			content: "",
 			gifts: [],
 			giftActiveId: 0,
-			url:''
+			id:0,
+			sign:'',
+			detail:{
+				create_time:'',
+				id:1,
+				title:'',
+				cover:'',
+				user_id:0,
+				look_count:0,
+				coin:0,
+				key:'',
+				status:0,
+				userId:0,
+				user:{
+					id:0,
+					username:'',
+					avatar:''
+				}
+			},
 		};
 	},
 	methods: {
 		//打开输入弹幕的对话框
 		openInput() {
-			this.$store.dispatch('authMethod',() => {
+			console.log("11111111111111111");
+			store.dispatch('authMethod',() => {
+				console.log("222222222222");
 				this.$refs.input.open();
-			})
-			
-		
+			})	
 		},
 		openGift() {
 			this.$refs.giftPopup.open();
@@ -156,8 +187,8 @@ export default {
 			}
 			let g = this.gifts[index];
 			this.$refs.gift.send({
-				username: "欧派",
-				avatar: "https://avatars3.githubusercontent.com/u/59445871?s=460&u=da5694544e03959d2e2c54ea5b2a29c67174cbcc&v=4",
+				username: this.$store.state.user.username,
+				avatar: this.$store.state.user.avatar,
 				gift_name: g.name,
 				gift_image: g.image,
 				num: 10
@@ -170,7 +201,7 @@ export default {
 			}
 			this.$refs.danmu.send({
 				id: Math.random() * 100, //随机生成id
-				name: "欧派",
+				name: this.$store.state.user.username,
 				content: this.content
 			});
 			this.content = "";
@@ -190,25 +221,31 @@ export default {
 			// return this.$H.get('/live/read'+id)
 		}
 	},
-	mounted() {
-		//送礼物演示
-		setInterval(() => {
-			this.$refs.gift.send({
-				username: "发送人",
-				avatar: "",
-				gift_name: "蛋糕",
-				gift_image: "/static/gift/3.png",
-				num: 1
-			});
-		}, 3000);
-	},
-	onLoad(e) {
+	// mounted() {
+	// 	//送礼物演示
+	// 	setInterval(() => {
+	// 		this.$refs.gift.send({
+	// 			username: "发送人",
+	// 			avatar: "",
+	// 			gift_name: "蛋糕",
+	// 			gift_image: "/static/gift/3.png",
+	// 			num: 1
+	// 		});
+	// 	}, 3000);
+	// },
+	onLoad(option) {
+		this.id = option.id;
+		console.log(this.id);
 		let res = uni.getSystemInfoSync();
 		this.statusBarHeight = res.statusBarHeight;
 		this.gifts = myGifts;
+		$H.get('/live/read/'+this.id).then(res => {
+			console.log(res);
+			this.detail = res.data;
+			this.sign = res.sign;
+		});
 		
-		console.log(e);
-	}
+	},
 };
 </script>
 
