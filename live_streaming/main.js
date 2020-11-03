@@ -17,7 +17,7 @@ Vue.prototype.authJump = (options) => {
 			url:'/pages/login/login',
 		});
 	}
-	options();
+	uni.navigateTo(options);
 }
 
 

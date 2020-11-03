@@ -1,108 +1,81 @@
 <template>
 	<view>
-		<view>
-			<image src="../../static/lunbo2.jpg" class="img" style="width: 750rpx;height: 300rpx;"></image>
+		<view class="top flex align-center justify-center">
+			<!-- <image src="../../static/lunbo2.jpg" class="img" style="width: 750rpx;height: 300rpx;"></image> -->
+		<input style="width: 600rpx;height: 70rpx;background-color: rgba(0,0,0,0.4);" 
+		type="text"
+		class="rounded-circle mx-1 pl-5"
+		placeholder="搜索直播间"
+		/>
 		</view>
-		<!-- 轮播图 -->
-		<!-- <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="200"
-		style="width: 750rpx;height: 250rpx;"
-		>
-		<swiper-item>
-			<image src="../../static/lunbo1.jpg" style="width: 750rpx;height: 250rpx;"></image>
-		</swiper-item>
-		<swiper-item>
-			<image src="../../static/lunbo2.jpg" style="width: 750rpx;height: 250rpx;"></image>
-		</swiper-item>
-		</swiper> -->
 		
 		<!-- 直播列表 -->
 		<view class="flex flex-wrap">
-		<f-list v-for="(item, index) in list" :key="index" :item="item" :index="index" @click="openLive()"></f-list>
+		<view class="list-item"
+		 v-for="(item,index) in list" :key="index">
+		 <f-card :item="item" :index="index" @click="openLive(item.id)"></f-card>
+		 </view>
+	</view>
+	
+	<view class="f-divider"></view>
+	<view class="flex align-center justify-center py-3">
+		<text class="font-md text-secondary">{{loadText}}</text>
 	</view>
 	</view>
 </template>
 
 <script>
-	import fList from '../../components/common/f-list.vue'
+	import fCard from "@/components/common/f-card.vue";
 	export default {
 		components:{
-			fList
+			fCard
 		},
 		data() {
 			return {
-				url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
-				list:[
-					{
-						img:'../../static/me.jpg',
-						url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
-						title:'游戏',
-						popularity:30,
-						view:10,
-						isLive:true
-					},
-					{
-						img:'../../static/bg.jpg',
-						url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
-						title:'游戏',
-						popularity:10,
-						view:10,
-						isLive:false
-					},
-					{
-						img:'../../static/bg1.jpg',
-						url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
-						title:'游戏',
-						popularity:110,
-						view:110,
-						isLive:false
-					},
-					{
-						img:'../../static/bg2.png',
-						url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
-						title:'生活',
-						popularity:220,
-						view:220,
-						isLive:true
-					},
-					{
-						img:'../../static/bg3.png',
-						url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
-						title:'生活',
-						popularity:110,
-						view:110,
-						isLive:false
-					},
-					{
-						img:'../../static/bg3.png',
-						url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
-						title:'标题',
-						popularity:1110,
-						view:1110,
-						isLive:false
-					},
-					{
-						img:'../../static/bg3.png',
-						url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
-						title:'游戏',
-						popularity:100,
-						view:110,
-						isLive:false
-					},
-					{
-						img:'../../static/bg3.png',
-						url:'http://127.0.0.1:23481/live/qY2MG2pfE3hFQaa7E2lX.flv?sign=1604327903-bb15c620a97fcbee4deb6c7401a724de8',
-						title:'生活',
-						popularity:10,
-						view:10,
-						isLive:false
-					}
-				]
+				list:[],
+				page:1,
+				loadText:'上拉加载更多'
+			};
+		},
+		onLoad() {
+			this.getData();
+		},
+		onPullDownRefresh() {
+			this.page = 1;
+			this.getData().then(res => {
+				uni.showToast({
+					title:'刷新成功',
+					icon:'none'
+				});
+				uni.stopPullDownRefresh();
+			}).catch(err => {
+				uni.stopPullDownRefresh();
+			});
+		},
+		onReachBottom() {
+			if(this.loadText !== '上拉加载更多'){
+				return;
 			}
+			this.loadText = '加载中...';
+			this.page++;
+			this.getData();
 		},
 		methods: {
-			openLive() {
+			getData(){
+				let page = this.page;
+				return this.$H.get('/live/list/'+page).then(res => {
+					(this.list = page === 1 ? res: [...this.list,...res]),
+					(this.loadText = res.length < 10 ? '没有更多了' : '上拉加载更多');
+				}).catch(err => {
+					if(this.page > 1){
+						this.page -- ;
+						this.loadText = '上拉加载更多';
+					}
+				});
+			},
+			openLive(id) {
 				uni.navigateTo({
-					url:'../live/live?url='+this.url
+					url:'../live/live?id='+id
 				})
 			}
 		}
@@ -116,5 +89,12 @@
 	padding: 5rpx;
 	box-sizing: border-box;
 	position: relative;
+}
+.top{
+	width: 750rpx;
+	height: 260rpx;
+	background-image: url(../../static/Dingtalk_20201028180805.jpg);
+	background-size: cover;
+	background-image: linear-gradient(to right,#ba7ace 0%,#8745ff 100%);
 }
 </style>

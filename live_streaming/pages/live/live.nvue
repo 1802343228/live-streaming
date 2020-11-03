@@ -185,6 +185,9 @@ export default {
 			uni.navigateTo({
 				url:'../coin/coin'
 			});
+		},
+		getData(){
+			// return this.$H.get('/live/read'+id)
 		}
 	},
 	mounted() {
@@ -205,8 +208,6 @@ export default {
 		this.gifts = myGifts;
 		
 		console.log(e);
-		let url = e
-		this.url = url
 	}
 };
 </script>
