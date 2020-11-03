@@ -2927,11 +2927,13 @@ var render = function() {
                       expression: "form.password"
                     }
                   }),
-                  _c(
-                    "v-uni-text",
-                    { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
-                    [_vm._v("忘记密码")]
-                  )
+                  _vm._$g(9, "i")
+                    ? _c(
+                        "v-uni-text",
+                        { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
+                        [_vm._v("忘记密码")]
+                      )
+                    : _vm._e()
                 ],
                 1
               ),
@@ -2990,7 +2992,7 @@ var render = function() {
                 [
                   _c("v-uni-input", {
                     staticClass: _vm._$g(16, "sc"),
-                    staticStyle: { height: "100rpx", width: "60%" },
+                    staticStyle: { height: "100rpx", width: "56%" },
                     attrs: {
                       type: "password",
                       placeholder: "请输入密码",
@@ -3004,31 +3006,49 @@ var render = function() {
                       expression: "form.password"
                     }
                   }),
-                  _c(
-                    "v-uni-text",
-                    {
-                      staticClass: _vm._$g(17, "sc"),
-                      staticStyle: { height: "40rpx" },
-                      attrs: { _i: 17 }
-                    },
-                    [_vm._v("获取验证码")]
-                  )
+                  _vm._$g(17, "i")
+                    ? _c(
+                        "v-uni-text",
+                        {
+                          staticClass: _vm._$g(17, "sc"),
+                          staticStyle: { height: "40rpx", width: "25%" },
+                          attrs: { _i: 17 },
+                          on: {
+                            click: function($event) {
+                              return _vm.$handleViewEvent($event)
+                            }
+                          }
+                        },
+                        [_vm._v("获取验证码")]
+                      )
+                    : _vm._e(),
+                  _vm._$g(18, "i")
+                    ? _c(
+                        "v-uni-text",
+                        {
+                          staticClass: _vm._$g(18, "sc"),
+                          staticStyle: { height: "40rpx", width: "25%" },
+                          attrs: { _i: 18 }
+                        },
+                        [_vm._v("还剩" + _vm._$g(18, "t0-0") + "s")]
+                      )
+                    : _vm._e()
                 ],
                 1
               ),
-              _vm._$g(18, "i")
+              _vm._$g(19, "i")
                 ? _c("v-uni-input", {
-                    staticClass: _vm._$g(18, "sc"),
+                    staticClass: _vm._$g(19, "sc"),
                     staticStyle: { height: "100rpx" },
                     attrs: {
                       type: "password",
                       placeholder: "请输入确认密码",
-                      _i: 18
+                      _i: 19
                     },
                     model: {
-                      value: _vm._$g(18, "v-model"),
+                      value: _vm._$g(19, "v-model"),
                       callback: function($$v) {
-                        _vm.$handleVModelEvent(18, $$v)
+                        _vm.$handleVModelEvent(19, $$v)
                       },
                       expression: "form.repassword"
                     }
@@ -3040,8 +3060,8 @@ var render = function() {
       _c(
         "v-uni-view",
         {
-          staticClass: _vm._$g(19, "sc"),
-          attrs: { _i: 19 },
+          staticClass: _vm._$g(20, "sc"),
+          attrs: { _i: 20 },
           on: {
             click: function($event) {
               return _vm.$handleViewEvent($event)
@@ -3052,14 +3072,14 @@ var render = function() {
           _c(
             "v-uni-view",
             {
-              staticClass: _vm._$g(20, "sc"),
-              attrs: { "hover-class": "bg-main-hover", _i: 20 }
+              staticClass: _vm._$g(21, "sc"),
+              attrs: { "hover-class": "bg-main-hover", _i: 21 }
             },
             [
               _c(
                 "v-uni-text",
-                { staticClass: _vm._$g(21, "sc"), attrs: { _i: 21 } },
-                [_vm._v(_vm._$g(21, "t0-0"))]
+                { staticClass: _vm._$g(22, "sc"), attrs: { _i: 22 } },
+                [_vm._v(_vm._$g(22, "t0-0"))]
               )
             ],
             1
@@ -3069,49 +3089,49 @@ var render = function() {
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(22, "sc"), attrs: { _i: 22 } },
+        { staticClass: _vm._$g(23, "sc"), attrs: { _i: 23 } },
         [
           _c(
             "v-uni-text",
             {
-              staticClass: _vm._$g(23, "sc"),
-              attrs: { _i: 23 },
+              staticClass: _vm._$g(24, "sc"),
+              attrs: { _i: 24 },
               on: {
                 click: function($event) {
                   return _vm.$handleViewEvent($event)
                 }
               }
             },
-            [_vm._v(_vm._$g(23, "t0-0"))]
+            [_vm._v(_vm._$g(24, "t0-0"))]
           ),
           _c(
             "v-uni-text",
-            { staticClass: _vm._$g(24, "sc"), attrs: { _i: 24 } },
+            { staticClass: _vm._$g(25, "sc"), attrs: { _i: 25 } },
             [_vm._v("|")]
           ),
           _c(
             "v-uni-text",
             {
-              staticClass: _vm._$g(25, "sc"),
-              attrs: { _i: 25 },
+              staticClass: _vm._$g(26, "sc"),
+              attrs: { _i: 26 },
               on: {
                 click: function($event) {
                   return _vm.$handleViewEvent($event)
                 }
               }
             },
-            [_vm._v(_vm._$g(25, "t0-0"))]
+            [_vm._v(_vm._$g(26, "t0-0"))]
           )
         ],
         1
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(26, "sc"), attrs: { _i: 26 } },
+        { staticClass: _vm._$g(27, "sc"), attrs: { _i: 27 } },
         [
           _c(
             "v-uni-text",
-            { staticClass: _vm._$g(27, "sc"), attrs: { _i: 27 } },
+            { staticClass: _vm._$g(28, "sc"), attrs: { _i: 28 } },
             [_vm._v("————社交账号登录————")]
           )
         ],
@@ -3119,13 +3139,8 @@ var render = function() {
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(28, "sc"), attrs: { _i: 28 } },
+        { staticClass: _vm._$g(29, "sc"), attrs: { _i: 29 } },
         [
-          _c("v-uni-image", {
-            staticClass: _vm._$g(29, "sc"),
-            staticStyle: { width: "100rpx", height: "100rpx" },
-            attrs: { src: _vm._$g(29, "a-src"), _i: 29 }
-          }),
           _c("v-uni-image", {
             staticClass: _vm._$g(30, "sc"),
             staticStyle: { width: "100rpx", height: "100rpx" },
@@ -3135,6 +3150,11 @@ var render = function() {
             staticClass: _vm._$g(31, "sc"),
             staticStyle: { width: "100rpx", height: "100rpx" },
             attrs: { src: _vm._$g(31, "a-src"), _i: 31 }
+          }),
+          _c("v-uni-image", {
+            staticClass: _vm._$g(32, "sc"),
+            staticStyle: { width: "100rpx", height: "100rpx" },
+            attrs: { src: _vm._$g(32, "a-src"), _i: 32 }
           })
         ],
         1
@@ -3142,15 +3162,15 @@ var render = function() {
       _c(
         "v-uni-view",
         {
-          staticClass: _vm._$g(32, "sc"),
+          staticClass: _vm._$g(33, "sc"),
           staticStyle: { padding: "110rpx" },
-          attrs: { _i: 32 }
+          attrs: { _i: 33 }
         },
         [
           _vm._v("注册即代表您同意"),
           _c(
             "v-uni-text",
-            { staticStyle: { color: "#0062CC" }, attrs: { _i: 33 } },
+            { staticStyle: { color: "#0062CC" }, attrs: { _i: 34 } },
             [_vm._v("《XXX社区协议》")]
           )
         ],
@@ -3248,7 +3268,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../../Program/HBuilderX.2.8.11.20200907/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.container {\r\n\twidth: 750rpx;\r\n\theight: 100vh;\r\n\tmargin: 0;\r\n\tpadding: 100rpx 0 0 0;\r\n\tbackground-size: cover;\r\n\t/* background-image: linear-gradient(to bottom, #BA7ACE 0%, #8745FF 100%); */\n}\r\n", ""]);
+exports.push([module.i, "\n.container {\r\n\twidth: 750rpx;\r\n\theight: 100vh;\r\n\tmargin: 0;\r\n\tpadding: 20rpx 0 0 0;\r\n\tbackground-size: cover;\r\n\t/* background-image: linear-gradient(to bottom, #BA7ACE 0%, #8745FF 100%); */\n}\r\n\r\n", ""]);
 // Exports
 module.exports = exports;
 

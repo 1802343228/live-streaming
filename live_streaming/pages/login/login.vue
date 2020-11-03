@@ -9,9 +9,9 @@
 			<input type="text" v-model="form.username" class=" px-3 mb-4 font rounded border-bottom" placeholder="昵称/手机号/邮箱" style="height: 100rpx;" />
 			<view class="border-bottom flex">
 			<input type="password" v-model="form.password" class=" px-3 font rounded" placeholder="请输入密码" style="height: 100rpx;width: 65%;" />
-			<text class="text-light-muted p-2">忘记密码</text>
+			<text v-if="type === 'login'" class="text-light-muted p-2">忘记密码</text>
 			</view>
-			<input v-if="type != 'login'" type="password" v-model="form.repassword" class="bg-light px-3 mb-4 font rounded border-bottom" placeholder="请输入确认密码" style="height: 100rpx;" />
+			<input v-if="type != 'login'" type="password" v-model="form.repassword" class="px-3 mb-4 font rounded border-bottom mt-2" placeholder="请输入确认密码" style="height: 100rpx;" />
 		</view>
 		
 		<view class="px-3" v-else>
@@ -20,13 +20,14 @@
 			<input type="text" v-model="form.username" class="px-3 font rounded" placeholder="手机号" style="height: 100rpx;" />
 			</view>
 			<view class="border-bottom flex mt-3">
-			<input type="password" v-model="form.password" class=" px-3 font rounded" placeholder="请输入密码" style="height: 100rpx;width: 60%;" />
-			<text class="text-light-muted p-2 border bg-hover-light rounded" style="height: 40rpx;">获取验证码</text>
+			<input type="password" v-model="form.password" class=" px-3 font rounded" placeholder="请输入密码" style="height: 100rpx;width: 56%;" />
+			<text v-if="type === 'login' && !send" class="text-light-muted p-2 border bg-hover-light rounded" style="height: 40rpx;width: 25%;" @click="sendCode">获取验证码</text>
+			<text v-if="send" class="text-light-muted p-2 border bg-hover-light rounded align-center" style="height: 40rpx;width: 25%">还剩{{sec}}s</text>
 			</view>
-			<input v-if="type != 'login'" type="password" v-model="form.repassword" class="bg-light px-3 mb-4 font rounded border-bottom" placeholder="请输入确认密码" style="height: 100rpx;" />
+			<input v-if="type != 'login'" type="password" v-model="form.repassword" class="px-3 mb-4 font rounded border-bottom" placeholder="请输入确认密码" style="height: 100rpx;" />
 		</view>
 
-		<view class="p-3 flex align-center justify-center" @click="submit">
+		<view class="p-3 flex align-center justify-center mt-5" @click="submit">
 			<view class="rounded-circle bg-main p-3 flex align-center justify-center flex-1" hover-class="bg-main-hover">
 				<text class="text-white font-md">{{ type === "login" ? "登 录" : "注 册" }}</text>
 			</view>
@@ -56,6 +57,8 @@ export default {
 		return {
 			type: "login",
 			loginType:"psw",
+			send:false,
+			sec:60,
 			form: {
 				username: "",
 				password: "",
@@ -99,6 +102,23 @@ export default {
 					});
 				}
 			});
+		},
+		sendCode() {
+			this.send = true
+			// 倒计时60s结束后 可再次发送验证码
+			        let promise = new Promise((resolve, reject) => {
+			          let setTimer = setInterval(() => {
+			              this.sec= this.sec - 1
+			              if (this.sec <= 0) {
+			                this.send = false
+			                resolve(setTimer)
+							this.sec = 60
+			              }
+			            }, 1000)
+			        })
+			        promise.then((setTimer) => {
+			          clearInterval(setTimer)
+			        })
 		}
 	}
 };
@@ -109,8 +129,9 @@ export default {
 	width: 750rpx;
 	height: 100vh;
 	margin: 0;
-	padding: 100rpx 0 0 0;
+	padding: 20rpx 0 0 0;
 	background-size: cover;
 	/* background-image: linear-gradient(to bottom, #BA7ACE 0%, #8745FF 100%); */
 }
+
 </style>

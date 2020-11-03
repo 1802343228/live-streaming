@@ -48,6 +48,19 @@ export default new Vuex.Store({
 					data:JSON.stringify(state.user)
 				})
 			})
+		},
+		authMethod({
+			state
+		},callback){
+			if(!state.token){
+				uni.showToast({
+					title:'请先登录',
+					icon:'none'
+				});
+				return uni.navigateTo({
+					url:'/pages/login/login'
+				})
+			}
 		}
 
 	}

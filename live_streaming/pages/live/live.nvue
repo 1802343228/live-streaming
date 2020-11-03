@@ -131,7 +131,11 @@ export default {
 	methods: {
 		//打开输入弹幕的对话框
 		openInput() {
-			this.$refs.input.open();
+			this.$store.dispatch('authMethod',() => {
+				this.$refs.input.open();
+			})
+			
+		
 		},
 		openGift() {
 			this.$refs.giftPopup.open();
@@ -180,7 +184,7 @@ export default {
 		openCoin() {
 			uni.navigateTo({
 				url:'../coin/coin'
-			})
+			});
 		}
 	},
 	mounted() {

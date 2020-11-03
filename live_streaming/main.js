@@ -3,9 +3,23 @@ import App from './App'
 
 import $H from './common/request.js'
 Vue.prototype.$H = $H
-//引入全局Vuex并挂载在Vue原型上
+
 import store from './store/index.js'
 Vue.prototype.$store  = store
+
+Vue.prototype.authJump = (options) => {
+	if(!store.state.token) {
+		uni.showToast({
+			title:'请先登录',
+			icon:'none'
+		});
+		return uni.navigateTo({
+			url:'/pages/login/login',
+		});
+	}
+	options();
+}
+
 
 Vue.config.productionTip = false
 
@@ -16,17 +30,4 @@ const app = new Vue({
 	...App
 })
 app.$mount()
-// Vue.prototype.authMethod = (callback) => {
-// 	if(!store.state.token) {
-// 		uni.showToast({
-// 			title:'请先登录',
-// 			icon:'none'
-// 		});
-// 		return uni.navigateTo({
-// 			url:'/pages/login/login',
-// 		});
-// 	}
-// 	callback()
-// }
 
-// App.mpType = 'app'
