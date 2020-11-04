@@ -6,16 +6,16 @@ const await = require('await-stream-ready/lib/await')
 
 
 const config = {
-  AccessKeyId: 'LTAI4G9xYCnM3fkoYhPaPEmi', //阿里云key
-  AccessKeySecret: '17cATaA0znoxqjed0fh4Kc1xwY44tD', // 阿里云密钥
+  AccessKeyId: 'LTAI4G3rkARQwiGGkprRZwGm', //阿里云key
+  AccessKeySecret: 'Okx5ZZrlOveWo6WzQR3tHtCrDx5Mdq', // 阿里云密钥
 }
 
 
 // 签名模板，注意修改
 const sign = {
   REG_CODE: {
-    SignName: '陈蓉琪',
-    TemplateCode: 'SMS_205393392',
+    SignName: '智慧园区',
+    TemplateCode: 'SMS_190277609',
   },
 }
 
