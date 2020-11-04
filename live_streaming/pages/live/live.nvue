@@ -24,16 +24,18 @@
 				</view>
 
 				<view style="width: 325rpx;background-color: rgba(0,0,0,0.44);" class="flex rounded-circle">
+					<!-- 实时在线观看用户情况 -->
 					<scroll-view scroll-x="true" class="flex-1 flex">
-						<view class="p" v-for="i in 20" :key="i">
-							<image src="../../static/me.jpg"
+						<view class="p" v-for="(item,index) in list" :key="index">
+							<image :src="item.avatar|| '../../static/me.jpg'"
 							 style="width: 70rpx;height: 70rpx;" class="rounded-circle"></image></view>
 					</scroll-view>
 
 					<view class="p">
 						<view class="rounded-circle flex align-center justify-center bg-danger"
 						 style="width: 70rpx;height: 70rpx;">
-							<text class="text-white font-sm">1000</text>
+						 <!-- 实时在线观看人数 -->
+							<text class="text-white font-sm">{{list.length}}</text>
 						</view>
 					</view>
 				</view>
@@ -141,6 +143,7 @@ export default {
 			giftActiveId: 0,
 			id:0,
 			sign:'',
+			list:[],
 			detail:{
 				create_time:'',
 				id:1,
@@ -161,8 +164,24 @@ export default {
 		};
 	},
 	methods: {
+		//处理直播间事件
+		handleLiveEvent(e) {
+			let d = e.data;
+			switch(e.type){
+				case 'online':
+				if(d.action === 'join'){
+					this.list = d.data;
+				}
+				break;
+			default:
+			    break;
+			}
+		},
 		//加入或离开直播间
 		joinOrLeaveLive(type){
+			console.log("111222");
+			console.log(this.socket);
+			console.log(this.token);
 			if(this.socket && this.token) {
 				this.socket.emit(type + 'Live',{
 					live_id:this.id,
@@ -244,10 +263,18 @@ export default {
 		// 	});
 		// }, 3000);
 	},
-	...mapState({
-		socket:state => state.socket,
-		token:state => state.token
-	}),
+	computed:{
+		src(){
+			if(this.detail.key == '' || this.sign == ''){
+				return '';
+			}
+			return `https://obss.utools.club/live/${this.detail.key}.flv?sign=${this.sign}`;
+		},
+		...mapState({
+			socket:state => state.socket,
+			token:state => state.token
+		}),
+	},
 	onLoad(option) {
 		this.id = option.id;
 		console.log(this.id);
@@ -259,6 +286,8 @@ export default {
 			this.detail = res.data;
 			this.sign = res.sign;
 		});
+		//监听全局事件
+		uni.$on('live',this.handleLiveEvent);
 		
 	},
 };

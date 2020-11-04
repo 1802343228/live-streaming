@@ -11,7 +11,7 @@ class NspController extends Controller {
         const { ctx, app, service, helper } = this
         const socket = ctx.socket
         const id = socket.id
-
+call
         if(!token) {
             //通知前端 没有访问该接口的权限
             socket.emit(id,ctx.helper.parseMsg('error','您没有权限访问该接口'));
@@ -33,6 +33,7 @@ class NspController extends Controller {
 
     //进入直播间
     async joinLive() {
+        console.log("请求了11111111111111111111111111111111111111111111111111")
         const { ctx, app, service, helper }  = this
         const nsp = app.io.of('/')
 
@@ -59,14 +60,14 @@ class NspController extends Controller {
         socket.join(room)
         const rooms = [room]
         let list = await service.cache.get('userList_'+room)
-        list = list? lisr:[]
+        list = list ? lisr : []
         list = list.filter((item) => item.id !== user.id)
         list.unshift({
             id:user.id,
             name:user.username,
             avatar:user.avatar,
         })
-        service.cache.set('userList_'+room,list)
+        service.cache.set('userList_'+ room , list)
 
         nsp.adapter.clients(room,(err,clients) => {
             nsp.to(room).emit('online',{
