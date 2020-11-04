@@ -123,7 +123,8 @@ import fDanmu from "@/components/live/f-danmu.vue";
 import uniPopup from "@/components/uni-ui/uni-popup/uni-popup.vue";
 import myGifts from "@/common/gift.js";
 import $H from '@/common/request.js';
-import store from '@/store/index.js';
+import $C from '@/common/config.js';
+import { mapState } from 'vuex';
 
 export default {
 	components: {
@@ -160,13 +161,21 @@ export default {
 		};
 	},
 	methods: {
+		//加入或离开直播间
+		joinOrLeaveLive(type){
+			if(this.socket && this.token) {
+				this.socket.emit(type + 'Live',{
+					live_id:this.id,
+					token:this.token
+				});
+			}
+		},
 		//打开输入弹幕的对话框
 		openInput() {
-			//console.log("11111111111111111");
-			//store.dispatch('authMethod',() => {
-			//	console.log("222222222222");
-				this.$refs.input.open();
-			//})	
+			// store.dispatch('authMethod',() => {
+			// 	this.$refs.input.open();
+			// })	
+			this.$store.dispatch('authMethod',(this.$refs.input.open()))
 		},
 		openGift() {
 			this.$refs.giftPopup.open();
@@ -221,18 +230,24 @@ export default {
 			// return this.$H.get('/live/read'+id)
 		}
 	},
-	// mounted() {
-	// 	//送礼物演示
-	// 	setInterval(() => {
-	// 		this.$refs.gift.send({
-	// 			username: "发送人",
-	// 			avatar: "",
-	// 			gift_name: "蛋糕",
-	// 			gift_image: "/static/gift/3.png",
-	// 			num: 1
-	// 		});
-	// 	}, 3000);
-	// },
+	mounted() {
+		//加入直播间
+		this.joinOrLeaveLive('join');
+		//送礼物演示
+		// setInterval(() => {
+		// 	this.$refs.gift.send({
+		// 		username: "发送人",
+		// 		avatar: "",
+		// 		gift_name: "蛋糕",
+		// 		gift_image: "/static/gift/3.png",
+		// 		num: 1
+		// 	});
+		// }, 3000);
+	},
+	...mapState({
+		socket:state => state.socket,
+		token:state => state.token
+	}),
 	onLoad(option) {
 		this.id = option.id;
 		console.log(this.id);

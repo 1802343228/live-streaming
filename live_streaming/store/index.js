@@ -29,12 +29,25 @@ export default new Vuex.Store({
 			S.on('connect',() => {
 				console.log('已连接');
 				//测试推送一条消息到后端
-				S.emit('test','测试socket连接')
-				
-				//监听服务端的消息
-				S.on(S.id,(e)  => {
-					console.log(e);
+				state.socket = S
+				//socket.io唯一链接Id，可以监控这个id实现点对点通讯
+				const{
+					id
+				} = S
+				S.on(id,(e) => {
+					let d = e.data
+					if(d.action === 'error'){
+						let msg = d.payload
+						return uni.showToast({
+							title:msg,
+							icon:'none'
+						})
+					}
 				})
+				//监听服务端的消息
+				// S.on(S.id,(e)  => {
+				// 	console.log(e);
+				// })
 			})
 			//监听失败
 			S.on('error',() => {
@@ -68,6 +81,8 @@ export default new Vuex.Store({
 			state.token = user.token
 			
 			uni.setStorageSync('user',JSON.stringify(user))
+			console.log("1111111");
+			console.log(user.token);
 			uni.setStorageSync('token',user.token)
 		},
 		getUserInfo({
@@ -85,10 +100,9 @@ export default new Vuex.Store({
 				})
 			})
 		},
-		authMethod({
-			state
-		},callback){
-			if(!state.token){
+		authMethod({},callback){
+			let token = uni.getStorageSync('token')
+			if(!token){
 				uni.showToast({
 					title:'请先登录',
 					icon:'none'

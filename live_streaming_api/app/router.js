@@ -6,8 +6,9 @@
 module.exports = app => {
   const { router, controller,io } = app;
 
-//socket路由配置测试
-io.of('/').route('test',io.controller.nsp.test)
+  //socket路由配置测试
+  io.of('/').route('test',io.controller.nsp.test);
+  io.of('/').route('joinLive',io.controller.nsp.joinLive);
 
   router.get('/', controller.home.index);
   router.get('/list', controller.home.list);
