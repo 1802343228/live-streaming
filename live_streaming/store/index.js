@@ -33,7 +33,7 @@ export default new Vuex.Store({
 			}
 			//监听连接
 			S.on('connect',() => {
-				console.log('已连接');
+				console.log('socket已连接');
 				//测试推送一条消息到后端
 				state.socket = S
 				//socket.io唯一链接Id，可以监控这个id实现点对点通讯
@@ -44,6 +44,9 @@ export default new Vuex.Store({
 					let d = e.data
 					if(d.action === 'error'){
 						let msg = d.payload
+						// if(e.meta.notoast){
+						// 	return
+						// }
 						return uni.showToast({
 							title:msg,
 							icon:'none'
@@ -57,12 +60,23 @@ export default new Vuex.Store({
 				// 	console.log(e);
 				// })
 			})
+			// //移除监听事件
+			// const removeListener = () => {
+			// 	if(S){
+			// 		S.removeListener('online',onlineEvent)
+			// 	}		
+			// 		}
+			
 			//监听失败
 			S.on('error',() => {
-				console.log('连接失败');
+			//	removeListener()
+				//state.socket = null
+				console.log('socket连接失败');
 			})
 			//监听断开
 			S.on('disconnect',() => {
+				//removeListener()
+			//	state.socket = null
 				console.log('已断开');
 			})
 		},

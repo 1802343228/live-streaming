@@ -1,7 +1,9 @@
 'use strict'
+
+
 module.exports = (app) => {
   const { STRING, INTEGER, DATE, ENUM, TEXT } = app.Sequelize
-  const LiveUser = app.model.define('live_user',{
+  const LiveUser = app.model.define('live_user' , {
     id:{
         type: INTEGER(20),
         primaryKey: true,
