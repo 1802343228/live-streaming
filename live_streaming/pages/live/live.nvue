@@ -162,11 +162,11 @@ export default {
 	methods: {
 		//打开输入弹幕的对话框
 		openInput() {
-			console.log("11111111111111111");
-			store.dispatch('authMethod',() => {
-				console.log("222222222222");
+			//console.log("11111111111111111");
+			//store.dispatch('authMethod',() => {
+			//	console.log("222222222222");
 				this.$refs.input.open();
-			})	
+			//})	
 		},
 		openGift() {
 			this.$refs.giftPopup.open();

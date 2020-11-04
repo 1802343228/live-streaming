@@ -67,6 +67,7 @@
 
 <script>
 	import $H from '@/common/request.js';
+	import store from '../../store/index.js';
 export default {
 	data() {
 		return {
@@ -119,7 +120,7 @@ export default {
 						repassword: ""
 					};
 				} else {
-					this.$store.dispatch("login", res);
+					store.dispatch("login", res);
 					uni.navigateBack({
 						delta: 1
 					});
@@ -190,15 +191,17 @@ export default {
 											wxid:"oRrdQt3hwWWB3VH2Qaa8ZJRAlY9g"
 										}
 										$H.post("/wxLogin", wxid).then(res => {
+											console.log(res);
+											store.dispatch("login", res);
 											uni.showToast({
 												title: "成功",
 												icon: "none"
 											});
-
-											this.$store.dispatch("login", res);
 											uni.navigateBack({
 												delta: 1
 											});
+											
+											
 										});
 									}
 								});

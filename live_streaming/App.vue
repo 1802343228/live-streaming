@@ -14,7 +14,8 @@ export default {
 			});
 			console.log("点击了中间按钮");
 		});
-		this.$store.dispatch('initUser')
+		this.$store.dispatch('initUser');
+		this.$store.dispatch('connectSocket');
 	},
 	onShow: function() {
 		console.log("App Show");
