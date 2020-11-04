@@ -48,7 +48,7 @@ class NspController extends Controller {
         //接收参数
         const message = ctx.args[0] || {}
 
-        //当前连接call
+        //当前连接
         const socket = ctx.socket
         console.log('socket'+socket)
         const id = socket.id
@@ -71,7 +71,7 @@ class NspController extends Controller {
         socket.join(room)
         const rooms = [room]
         let list = await service.cache.get('userList_'+room)
-        list = list ? lisr : []
+        list = list ? list : []
         list = list.filter((item) => item.id !== user.id)
         list.unshift({
             id:user.id,
@@ -111,6 +111,57 @@ class NspController extends Controller {
                 })
             }
         }
+    }
+
+    //离开直播间
+    async leaveLive() {
+        const { ctx, app, service, helper } = this
+        const nsp = app.io.of('/')
+        const message = ctx.args[0] || {}
+
+        const socket = ctx.socket
+        console.log('socket'+socket)
+        const id = socket.id
+
+        let{ live_id, token } = message
+        //验证用户token
+        let user = await this.checkToken(token)
+        if(!user) {
+            return
+        }
+
+        let msg = await service.live.checkStatus(live_id)
+        console.log('msg'+msg)
+        if(msg) {
+            socket.emit(id,ctx.helper.parseMsg('error',msg,{
+                notoast:true,
+            }))
+            return
+        }
+
+        const room = 'live_' + live_id
+        socket.join(room)
+        const rooms = [room]
+        let list = await service.cache.get('userList_'+room)
+       if(list){
+           list = list.filter((item) => item.id !== user.id)
+           service.cache.set('userList_'+ room,list)
+       }
+       console.log(list)
+
+        nsp.adapter.clients(room,(err,clients) => {
+            nsp.to(room).emit('online',{
+                clients,
+                action: 'join',
+                user:{
+                    id:user.id,
+                    name:user.username,
+                    avatar:user.avatar
+                },
+                data:list,
+            })
+        })
+
     }
 
     
