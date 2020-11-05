@@ -242,6 +242,7 @@ class UserController extends Controller {
 
     ctx.apiSuccess(user)
   }
+
 }
 
 module.exports = UserController

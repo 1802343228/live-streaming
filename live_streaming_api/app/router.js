@@ -10,7 +10,8 @@ module.exports = app => {
   //io.of('/').route('test',io.controller.nsp.test);
   io.of('/').route('joinLive',io.controller.nsp.joinLive);
   io.of('/').route('leaveLive',io.controller.nsp.leaveLive);
-  io.of('/').route('comment', io.controller.nsp.comment)
+  io.of('/').route('comment', io.controller.nsp.comment);
+  io.of('/').route('gift', io.controller.nsp.gift);
 
   router.get('/', controller.home.index);
   router.get('/list', controller.home.list);
@@ -36,4 +37,6 @@ module.exports = app => {
   router.post('/api/sendcode',controller.api.sms.sendCode);
   //微信Id登录
   router.post('/api/wxLogin',controller.api.user.wxLogin);
+  //获取礼物列表
+  router.get('/api/gift/list',controller.api.gift.list);
 };

@@ -157,8 +157,6 @@ export default {
 	methods: {
 		//处理直播间事件
 		handleLiveEvent(e) {
-			console.log("1232131311231");
-			console.log(e);
 			let d = e.data;
 			switch (e.type) {
 				case "online":
@@ -178,15 +176,20 @@ export default {
 					this.content = ''
 					this.$refs.input.close()
 					break;
+				case 'gift':
+				    this.$refs.gift.send({
+				    	username: d.username,
+				    	avatar: d.avatar,
+				    	gift_name: d.gift_name,
+				    	gift_image: d.gift_image,
+				    	num: d.num
+				    });
 				default:
 					break;
 			}
 		},
 		//加入或离开直播间
 		joinOrLeaveLive(type) {
-			//console.log("111222");
-			// console.log(this.socket);
-			// console.log(this.token);
 			if (this.socket && this.token) {
 				this.socket.emit(type + "Live", {
 					live_id: this.id,
@@ -219,13 +222,33 @@ export default {
 				return;
 			}
 			let g = this.gifts[index];
-			this.$refs.gift.send({
-				username: this.$store.state.user.username,
-				avatar: this.$store.state.user.avatar,
-				gift_name: g.name,
-				gift_image: g.image,
-				num: 10
-			});
+			
+			if(!this.token && !this.socket){
+				uni.navigateTo({
+					url:'../login/login'
+				});
+				return uni.showToast({
+					title:'请先登录',
+					icon:'none'
+				});
+			}
+			console.log("11111111");
+			console.log(g);
+			if(this.socket){
+				console.log("请求到socket");
+				this.socket.emit('gift',{
+					live_id:this.id,
+					gift_id:g.id,
+					token:this.token
+				})
+			}
+			// this.$refs.gift.send({
+			// 	username: this.$store.state.user.username,
+			// 	avatar: this.$store.state.user.avatar,
+			// 	gift_name: g.name,
+			// 	gift_image: g.image,
+			// 	num: 10
+			// });
 			this.closeGift();
 		},
 		//提交发送弹幕信息
@@ -251,6 +274,7 @@ export default {
 			// 	content: this.content
 			// });
 			if(this.socket){
+				console.log("121213123123213");
 				this.socket.emit('comment',{
 					live_id:this.id,
 					data:this.content,
@@ -317,6 +341,13 @@ export default {
 			this.detail = res.data;
 			this.sign = res.sign;
 		});
+		//请求礼物列表接口
+		$H.get('/gift/list').then(res => {
+			this.gifts = res.map(item => {
+				item.image = '../../static/gift/' + item.image
+				return item
+			})
+		})
 		//监听全局事件
 		uni.$on("live", this.handleLiveEvent);
 	}

@@ -32,9 +32,16 @@ export default new Vuex.Store({
 				})
 			}
 			//全局事件，用来监听发送弹幕
-			let commandEvent = (e) => {
+			let commentEvent = (e) => {
 				uni.$emit('live',{
 					type:'comment',
+					data:e
+				})
+			}
+			//全局事件，用来监听发送礼物
+			let giftEvent = (e) => {
+				uni.$emit('live',{
+					type:'gift',
 					data:e
 				})
 			}
@@ -64,6 +71,8 @@ export default new Vuex.Store({
 				S.on('online',onlineEvent)
 				//监听弹幕信息
 				S.on('comment',commentEvent)
+				//监听礼物接收
+				S.on('gift',giftEvent)
 				//监听服务端的消息
 				// S.on(S.id,(e)  => {
 				// 	console.log(e);
@@ -73,7 +82,8 @@ export default new Vuex.Store({
 			const removeListener = () => {
 				if(S){
 					S.removeListener('online',onlineEvent)
-					S.removeListener('comment',commandEvent)
+					S.removeListener('comment',commentEvent)
+					S.removeListener('gift',giftEvent)
 				}		
 			}
 			
