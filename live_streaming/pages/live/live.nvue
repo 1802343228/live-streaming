@@ -6,36 +6,28 @@
 			<!-- 个人信息|观看详细信息 -->
 			<view style="height: 80rpx;" class="px-2 flex justify-between align-center">
 				<view style="width: 325rpx;background-color: rgba(0,0,0,0.4);" class="flex rounded-circle">
-					<view class="p">
-						<image 
-						:src="detail.user.avatar || '../../static/me.jpg'"
-						 style="width: 70rpx;height: 70rpx;"
-						  class="rounded-circle"></image></view>
+					<view class="p"><image :src="detail.user.avatar || '../../static/me.jpg'" style="width: 70rpx;height: 70rpx;" class="rounded-circle"></image></view>
 					<view class="flex-1 flex flex-column justify-center">
-						<text class="text-white font">{{detail.user.username}}</text>
-						<text class="text-white font-sm">{{detail.user.look_count}}</text>
+						<text class="text-white font">{{ detail.user.username }}</text>
+						<text class="text-white font-sm">{{ detail.user.look_count }}</text>
 					</view>
 					<view class="p">
-						<view class="rounded-circle flex align-center justify-center bg-danger" 
-						style="width: 70rpx;height: 70rpx;">
-						<text class="text-white">+</text>
-						</view>
+						<view class="rounded-circle flex align-center justify-center bg-danger" style="width: 70rpx;height: 70rpx;"><text class="text-white">+</text></view>
 					</view>
 				</view>
 
 				<view style="width: 325rpx;background-color: rgba(0,0,0,0.44);" class="flex rounded-circle">
 					<!-- 实时在线观看用户情况 -->
 					<scroll-view scroll-x="true" class="flex-1 flex">
-						<view class="p" v-for="(item,index) in list" :key="index">
-							<image :src="item.avatar|| '../../static/me.jpg'"
-							 style="width: 70rpx;height: 70rpx;" class="rounded-circle"></image></view>
+						<view class="p" v-for="(item, index) in list" :key="index">
+							<image :src="item.avatar || '../../static/me.jpg'" style="width: 70rpx;height: 70rpx;" class="rounded-circle"></image>
+						</view>
 					</scroll-view>
 
 					<view class="p">
-						<view class="rounded-circle flex align-center justify-center bg-danger"
-						 style="width: 70rpx;height: 70rpx;">
-						 <!-- 实时在线观看人数 -->
-							<text class="text-white font-sm">{{list.length}}</text>
+						<view class="rounded-circle flex align-center justify-center bg-danger" style="width: 70rpx;height: 70rpx;">
+							<!-- 实时在线观看人数 -->
+							<text class="text-white font-sm">{{ list.length }}</text>
 						</view>
 					</view>
 				</view>
@@ -46,7 +38,8 @@
 				<view style="width: 325rpx;background-color: rgba(0,0,0,0.4);" class="flex rounded-circle align-center">
 					<view class="p"><text class="text-warning">金币</text></view>
 					<view class="flex-1 flex flex-column justify-center">
-						<text class="text-white font">{{detail.coin}}</text></view>
+						<text class="text-white font">{{ detail.coin }}</text>
+					</view>
 				</view>
 			</view>
 
@@ -109,9 +102,7 @@
 				</swiper>
 
 				<view style="height: 100rpx;" class="flex align-center justify-end">
-					<view class="flex align-center justify-center py-2 px-2 rounded bg-warning" @click="openCoin">
-						<text class="font">充值</text>
-						</view>
+					<view class="flex align-center justify-center py-2 px-2 rounded bg-warning" @click="openCoin"><text class="font">充值</text></view>
 					<view class="flex align-center justify-center py-2 px-2 rounded bg-main" @click="sendGift"><text class="font text-white">发送</text></view>
 				</view>
 			</view>
@@ -124,9 +115,9 @@ import fGift from "@/components/live/f-gift.vue";
 import fDanmu from "@/components/live/f-danmu.vue";
 import uniPopup from "@/components/uni-ui/uni-popup/uni-popup.vue";
 import myGifts from "@/common/gift.js";
-import $H from '@/common/request.js';
-import $C from '@/common/config.js';
-import { mapState } from 'vuex';
+import $H from "@/common/request.js";
+import $C from "@/common/config.js";
+import { mapState } from "vuex";
 
 export default {
 	components: {
@@ -141,26 +132,26 @@ export default {
 			content: "",
 			gifts: [],
 			giftActiveId: 0,
-			id:0,
-			sign:'',
-			list:[],
-			detail:{
-				create_time:'',
-				id:1,
-				title:'',
-				cover:'',
-				user_id:0,
-				look_count:0,
-				coin:0,
-				key:'',
-				status:0,
-				userId:0,
-				user:{
-					id:0,
-					username:'',
-					avatar:''
+			id: 0,
+			sign: "",
+			list: [],
+			detail: {
+				create_time: "",
+				id: 1,
+				title: "",
+				cover: "",
+				user_id: 0,
+				look_count: 0,
+				coin: 0,
+				key: "",
+				status: 0,
+				userId: 0,
+				user: {
+					id: 0,
+					username: "",
+					avatar: ""
 				}
-			},
+			}
 		};
 	},
 	methods: {
@@ -169,28 +160,37 @@ export default {
 			console.log("1232131311231");
 			console.log(e);
 			let d = e.data;
-			switch(e.type){
-				case 'online':
-				if(d.action === 'join'){
-					this.list = d.data;
-				}
-				if(d.action === 'leave'){
-					this.list = d.data
-				}
-				break;
-			default:
-			    break;
+			switch (e.type) {
+				case "online":
+					if (d.action === "join") {
+						this.list = d.data;
+					}
+					if (d.action === "leave") {
+						this.list = d.data;
+					}
+					break;
+				case 'comment':
+				    this.$refs.danmu.send({
+						id:d.id,
+						name:d.user.name,
+						content:d.content
+					})
+					this.content = ''
+					this.$refs.input.close()
+					break;
+				default:
+					break;
 			}
 		},
 		//加入或离开直播间
-		joinOrLeaveLive(type){
+		joinOrLeaveLive(type) {
 			//console.log("111222");
 			// console.log(this.socket);
 			// console.log(this.token);
-			if(this.socket && this.token) {
-				this.socket.emit(type + 'Live',{
-					live_id:this.id,
-					token:this.token
+			if (this.socket && this.token) {
+				this.socket.emit(type + "Live", {
+					live_id: this.id,
+					token: this.token
 				});
 			}
 		},
@@ -198,8 +198,8 @@ export default {
 		openInput() {
 			// store.dispatch('authMethod',() => {
 			// 	this.$refs.input.open();
-			// })	
-			this.$store.dispatch('authMethod',(this.$refs.input.open()))
+			// })
+			this.$store.dispatch("authMethod", this.$refs.input.open());
 		},
 		openGift() {
 			this.$refs.giftPopup.open();
@@ -228,15 +228,35 @@ export default {
 			});
 			this.closeGift();
 		},
+		//提交发送弹幕信息
 		submit() {
 			if (this.content === "") {
-				return;
+				return uni.showToast({
+					title:'评论内容不能为空',
+					icon:'none'
+				});
 			}
-			this.$refs.danmu.send({
-				id: Math.random() * 100, //随机生成id
-				name: this.$store.state.user.username,
-				content: this.content
-			});
+			if(!this.token && !this.socket){
+				uni.navigateTo({
+					url:'../login/login',
+				});
+				return uni.showToast({
+					title:'请先登录',
+					icon:'none'
+				});
+			}
+			// this.$refs.danmu.send({
+			// 	id: Math.random() * 100, //随机生成id
+			// 	name: this.$store.state.user.username,
+			// 	content: this.content
+			// });
+			if(this.socket){
+				this.socket.emit('comment',{
+					live_id:this.id,
+					data:this.content,
+					token:this.token
+				})
+			}
 			this.content = "";
 			this.$refs.input.close();
 		},
@@ -247,16 +267,16 @@ export default {
 		},
 		openCoin() {
 			uni.navigateTo({
-				url:'../coin/coin'
+				url: "../coin/coin"
 			});
 		},
-		getData(){
+		getData() {
 			// return this.$H.get('/live/read'+id)
 		}
 	},
 	mounted() {
 		//加入直播间
-		this.joinOrLeaveLive('join');
+		this.joinOrLeaveLive("join");
 		//送礼物演示
 		// setInterval(() => {
 		// 	this.$refs.gift.send({
@@ -270,21 +290,21 @@ export default {
 	},
 	destroyed() {
 		//离开直播间
-		this.joinOrLeaveLive('leave');
+		this.joinOrLeaveLive("leave");
 		//移除全局事件
-		uni.$off('live',this.handleLiveEvent);
+		uni.$off("live", this.handleLiveEvent);
 	},
-	computed:{
-		src(){
-			if(this.detail.key == '' || this.sign == ''){
-				return '';
+	computed: {
+		src() {
+			if (this.detail.key == "" || this.sign == "") {
+				return "";
 			}
 			return `https://obss.utools.club/live/${this.detail.key}.flv?sign=${this.sign}`;
 		},
 		...mapState({
-			socket:state => state.socket,
-			token:state => state.token
-		}),
+			socket: state => state.socket,
+			token: state => state.token
+		})
 	},
 	onLoad(option) {
 		this.id = option.id;
@@ -292,15 +312,14 @@ export default {
 		let res = uni.getSystemInfoSync();
 		this.statusBarHeight = res.statusBarHeight;
 		this.gifts = myGifts;
-		$H.get('/live/read/'+this.id).then(res => {
+		$H.get("/live/read/" + this.id).then(res => {
 			console.log(res);
 			this.detail = res.data;
 			this.sign = res.sign;
 		});
 		//监听全局事件
-		uni.$on('live',this.handleLiveEvent);
-		
-	},
+		uni.$on("live", this.handleLiveEvent);
+	}
 };
 </script>
 

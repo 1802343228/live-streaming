@@ -10,6 +10,7 @@ module.exports = app => {
   //io.of('/').route('test',io.controller.nsp.test);
   io.of('/').route('joinLive',io.controller.nsp.joinLive);
   io.of('/').route('leaveLive',io.controller.nsp.leaveLive);
+  io.of('/').route('comment', io.controller.nsp.comment)
 
   router.get('/', controller.home.index);
   router.get('/list', controller.home.list);
