@@ -184,6 +184,7 @@ export default {
 				    	gift_image: d.gift_image,
 				    	num: d.num
 				    });
+					break;
 				default:
 					break;
 			}

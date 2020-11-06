@@ -26,7 +26,7 @@
 				<input v-model="phone" type="text" class="px-3 font rounded" placeholder="手机号" style="height: 100rpx;" />
 			</view>
 			<view class="border-bottom flex mt-3">
-				<input type="password" v-model="form.password" class=" px-3 font rounded" placeholder="请输入密码" style="height: 100rpx;width: 56%;" />
+				<input type="password" v-model="code" class=" px-3 font rounded" placeholder="请输入密码" style="height: 100rpx;width: 56%;" />
 				<text v-if="type === 'login' && !send" class="text-light-muted p-2 border bg-hover-light rounded" style="height: 40rpx;width: 25%;" @click="sendCode">
 					获取验证码
 				</text>
@@ -76,6 +76,7 @@ export default {
 			send: false,
 			sec: 60,
 			phone: "",
+			code:"",
 			wxid:"oRrdQt3hwWWB3VH2Qaa8ZJRAlY9g",
 			form: {
 				username: "",
@@ -105,27 +106,44 @@ export default {
 			this.loginType = this.loginType === "login" ? "phoneLogin" : "login";
 		},
 		submit() {
-			let msg = this.type === "login" ? "登录" : "注册";
+			if(this.loginType === 'login'){
+				let msg = this.type === "login" ? "登录" : "注册";
 
-			$H.post("/" + this.type, this.form).then(res => {
-				uni.showToast({
-					title: msg + "成功",
-					icon: "none"
+				$H.post("/" + this.type, this.form).then(res => {
+					uni.showToast({
+						title: msg + "成功",
+						icon: "none"
+					});
+					if (this.type === "reg") {
+						this.changeType();
+						this.form = {
+							username: "",
+							password: "",
+							repassword: ""
+						};
+					} else {
+						store.dispatch("login", res);
+						uni.navigateBack({
+							delta: 1
+						});
+					}
 				});
-				if (this.type === "reg") {
-					this.changeType();
-					this.form = {
-						username: "",
-						password: "",
-						repassword: ""
-					};
-				} else {
+			}else {
+				let phone = {
+					phone:this.phone,
+					code:this.code
+				}
+				$H.post("/" + this.loginType, phone).then(res => {
+					uni.showToast({
+						title: msg + "成功",
+						icon: "none"
+					});
 					store.dispatch("login", res);
 					uni.navigateBack({
 						delta: 1
 					});
-				}
-			});
+					});
+			}
 		},
 		// 表单验证
 		validate() {
@@ -142,20 +160,25 @@ export default {
 			return true;
 		},
 		sendCode() {
-			this.send = true;
-			// 倒计时60s结束后 可再次发送验证码
-			let promise = new Promise((resolve, reject) => {
-				let setTimer = setInterval(() => {
-					this.sec = this.sec - 1;
-					if (this.sec <= 0) {
-						this.send = false;
-						resolve(setTimer);
-						this.sec = 60;
-					}
-				}, 1000);
-			});
-			promise.then(setTimer => {
-				clearInterval(setTimer);
+			let phone = {
+				phone:this.phone
+			}
+			$H.post("/sendcode", phone).then(res => {
+				this.send = true;
+				// 倒计时60s结束后 可再次发送验证码
+				let promise = new Promise((resolve, reject) => {
+					let setTimer = setInterval(() => {
+						this.sec = this.sec - 1;
+						if (this.sec <= 0) {
+							this.send = false;
+							resolve(setTimer);
+							this.sec = 60;
+						}
+					}, 1000);
+				});
+				promise.then(setTimer => {
+					clearInterval(setTimer);
+				});
 			});
 		},
 		wxLogin() {
@@ -200,8 +223,8 @@ export default {
 											uni.navigateBack({
 												delta: 1
 											});
-											
-											
+
+
 										});
 									}
 								});

@@ -7,9 +7,7 @@ class GiftController extends Controller {
     async list(){
         let { ctx,app } = this
  
-        let rows = await app.model.Gift.findAll({
-  
-        })
+        let rows = await app.model.Gift.findAll({})
         ctx.apiSuccess(rows)
       }
     

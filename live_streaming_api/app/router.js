@@ -39,4 +39,6 @@ module.exports = app => {
   router.post('/api/wxLogin',controller.api.user.wxLogin);
   //获取礼物列表
   router.get('/api/gift/list',controller.api.gift.list);
+
+  router.get('/test',controller.admin.test.page);
 };

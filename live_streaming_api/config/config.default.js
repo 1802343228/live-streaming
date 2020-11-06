@@ -107,6 +107,12 @@ module.exports = (appInfo) => {
     },
   }
 
+  config.view = {
+    mapping: {
+      '.html': 'nunjucks',
+    },
+  };
+  
   config.middleware=['errorHandler','auth']
   config.auth = {
     match: ['/api/live/create','/api/user/logout','/api/user/info','/api/live/changestatus'],
