@@ -103,6 +103,18 @@ module.exports = appInfo => {
     secret: 'qhdgw@45ncashdaksh2!#@3nxjdas*_672',
   };
 
+  const config = {
+    AccessKeyId: 'LTAI4G3rkARQwiGGkprRZwGm', // 访问密钥编号
+    AccessKeySecret: 'Okx5ZZrlOveWo6WzQR3tHtCrDx5Mdq' // 密钥
+  };
+  
+  // 签名模板，注意修改
+  const sign = {
+    REG_CODE: {
+      SignName: '智慧园区',
+      TemplateCode: 'SMS_190277609',
+    },
+  }
 
   // redis存储
   config.redis = {
