@@ -1,3 +1,4 @@
+import $C from './config.js'
 export default {
 	// 全局配置
 	common: {
@@ -6,7 +7,6 @@ export default {
 		// #endif
 		// #ifdef H5
 		baseUrl: "/api",
-		//baseUrl: "https://oupai.utools.club",
 		// #endif
 		header: {
 			'Content-Type': 'application/json;charset=UTF-8',

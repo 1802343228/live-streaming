@@ -1,6 +1,6 @@
 <template>
 	<view class="flex-1">
-		<video class="flex-1" src="https://obss.utools.club/live/xoMuwWoQGV4bwKkpogZ5.flv?sign=1604493404-288a92528f376168d7271b4c5091d7f3" autoplay controls="false"></video>
+		<video class="flex-1" :src="src" autoplay controls="false"></video>
 		<!-- 头部 -->
 		<view style="position: fixed;left: 0;right: 0;" :style="'top:' + statusBarHeight + 'px'">
 			<!-- 个人信息|观看详细信息 -->
@@ -200,7 +200,7 @@ export default {
 		},
 		//打开输入弹幕的对话框
 		openInput() {
-			// store.dispatch('authMethod',() => {
+			// this.$store.dispatch('authMethod',() => {
 			// 	this.$refs.input.open();
 			// })
 			this.$store.dispatch("authMethod", this.$refs.input.open());
@@ -320,6 +320,10 @@ export default {
 		uni.$off("live", this.handleLiveEvent);
 	},
 	computed: {
+		...mapState({
+			socket:state=>state.socket,
+			token:state=>state.token
+		}),
 		src() {
 			if (this.detail.key == "" || this.sign == "") {
 				return "";
@@ -345,7 +349,7 @@ export default {
 		//请求礼物列表接口
 		$H.get('/gift/list').then(res => {
 			this.gifts = res.map(item => {
-				item.image = '../../static/gift/' + item.image
+				item.image = $C.imgUrl + item.image
 				return item
 			})
 		})

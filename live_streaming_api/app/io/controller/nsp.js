@@ -3,6 +3,7 @@
 'use strict';
 
 const await = require('await-stream-ready/lib/await');
+const live = require('../../model/live')
 
 const Controller = require('egg').Controller;
 

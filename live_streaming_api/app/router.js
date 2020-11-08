@@ -38,8 +38,12 @@ module.exports = app => {
   router.post('/api/phoneLogin', controller.api.user.phoneLogin);
   // 发送手机验证码
   router.post('/api/sendcode', controller.api.sms.sendCode);
+  //上传图片
+  router.post('/api/upload',controller.api.common.upload);
 
-
+ 
+ 
+ 
   // 后台相关路由配置
   router.get('/test', controller.admin.test.page);
 
