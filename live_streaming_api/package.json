@@ -1,7 +1,7 @@
 {
-  "name": "egg-hello",
+  "name": "live-stream-api",
   "version": "1.0.0",
-  "description": "egg-init",
+  "description": "",
   "private": true,
   "egg": {
     "declarations": true
@@ -43,8 +43,8 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-live-streaming-api --sticky",
-    "stop": "egg-scripts stop --title=egg-server-egg-hello",
+    "start": "egg-scripts start --daemon --title=egg-server-live-stream-api --sticky",
+    "stop": "egg-scripts stop --title=egg-server-live-stream-api",
     "dev": "egg-bin dev --sticky",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
@@ -61,6 +61,6 @@
     "type": "git",
     "url": ""
   },
-  "author": "crq",
+  "author": "",
   "license": "MIT"
 }

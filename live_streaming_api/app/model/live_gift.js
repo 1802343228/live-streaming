@@ -1,59 +1,64 @@
-'use strict'
+/* eslint-disable strict */
+/* eslint-disable no-unused-vars */
 
+module.exports = app => {
+  const { STRING, INTEGER, DATE, ENUM, TEXT } = app.Sequelize;
 
-module.exports = (app) => {
-  const { STRING, INTEGER, DATE, ENUM, TEXT } = app.Sequelize
-  const LiveGift = app.model.define('live_gift' , {
-    id:{
-        type:INTEGER(20),
-        primaryKey:true,
-        autoIncrement:true,
+  const LiveGift = app.model.define('Live_gift', {
+    id: {
+      type: INTEGER(20),
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    live_id: {
+      type: INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+      comment: '直播间id',
+      references: {
+        model: 'live',
+        key: 'id',
       },
-      live_id:{
-        type:INTEGER,
-        allowNull:false,
-        defaultValue:0,
-        comment:'直播间id',
-        references:{
-          model:'live',
-          key:'id',
-        },
-        onDelete:'cascade',
-        onUpdate:'restrict',
+      onDelete: 'cascade',
+      onUpdate: 'restrict', // 更新时操作
+    },
+    user_id: {
+      type: INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+      comment: '用户id',
+      references: {
+        model: 'user',
+        key: 'id',
       },
-      user_id:{
-        type:INTEGER,
-        allowNull:false,
-        defaultValue:0,
-        comment:'用户id',
-        references:{
-          model:'user',
-          key:'id',
-        },
-        onDelete:'cascade',
-        onUpdate:'restrict',
+      onDelete: 'cascade',
+      onUpdate: 'restrict', // 更新时操作
+    },
+    gift_id: {
+      type: INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+      comment: '礼物id',
+      references: {
+        model: 'gift',
+        key: 'id',
       },
-      gift_id:{
-        type:INTEGER,
-        allowNull:false,
-        defaultValue:0,
-        comment:'礼物id',
-        references:{
-          model:'gift',
-          key:'id',
-        },
-        onDelete:'cascade',
-        onUpdate:'restrict',
-      },
-      created_time:DATE,
-      updated_time:DATE,
-  })
-  //关联关系
+      onDelete: 'cascade',
+      onUpdate: 'restrict', // 更新时操作
+    },
+    created_time: DATE,
+    updated_time: DATE,
+  });
+
+  // 关联关系
   LiveGift.associate = function(models) {
-    LiveGift.belongsTo(app.model.User)
-    LiveGift.belongsTo(app.model.Live)
-    LiveGift.belongsTo(app.model.Gift)
-}
+    // 关联用户
+    LiveGift.belongsTo(app.model.User);
+    // 关联直播间
+    LiveGift.belongsTo(app.model.Live);
+    // 关联礼物
+    LiveGift.belongsTo(app.model.Gift);
+  };
 
-return LiveGift
-}
+  return LiveGift;
+};

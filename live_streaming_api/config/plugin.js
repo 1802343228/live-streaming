@@ -23,8 +23,8 @@ module.exports = {
     package: 'egg-redis',
   },
   io: {
-    enable:true,
-    package:'egg-socket.io',
+    enable: true,
+    package: 'egg-socket.io',
   },
   nunjucks: {
     enable: true,
@@ -35,4 +35,3 @@ module.exports = {
     package: 'egg-tenpay',
   },
 };
-

@@ -1,19 +1,17 @@
-'use strict'
+/* eslint-disable no-unused-vars */
+'use strict';
 
-const Controller = require('egg').Controller
-const await = require('await-stream-ready/lib/await')
+const await = require('await-stream-ready/lib/await');
+
+const Controller = require('egg').Controller;
 
 class GiftController extends Controller {
-    async list(){
-        let { ctx,app } = this
- 
-        let rows = await app.model.Gift.findAll({})
-        ctx.apiSuccess(rows)
-      }
-    
+  // 礼物列表
+  async list() {
+    const { ctx, app } = this;
+
+    ctx.apiSuccess(await app.model.Gift.findAll());
+  }
 }
-module.exports = GiftController
 
-
-
-
+module.exports = GiftController;

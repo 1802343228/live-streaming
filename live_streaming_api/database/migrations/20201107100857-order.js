@@ -1,25 +1,21 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
     const { INTEGER, STRING, DATE, ENUM, TEXT } = Sequelize;
-    return queryInterface.createTable('live', {
+    return queryInterface.createTable('order', {
       id: {
         type: INTEGER(20),
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
       },
-      title: {
+      no: {
         type: STRING(100),
         allowNull: false,
         defaultValue: '',
-        comment: '直播间标题'
-      },
-      cover: {
-        type: STRING,
-        allowNull: true,
-        defaultValue: '',
-        comment: '直播间封面'
+        comment: '订单号',
+        unique: true,
       },
       user_id: {
         type: INTEGER,
@@ -28,34 +24,23 @@ module.exports = {
         comment: '用户id',
         references: {
           model: 'user',
-          key: 'id'
+          key: 'id',
         },
         onDelete: 'cascade',
         onUpdate: 'restrict', // 更新时操作
       },
-      look_count: {
+      price: {
         type: INTEGER,
         allowNull: false,
         defaultValue: 0,
-        comment: '总观看人数'
-      },
-      coin: {
-        type: INTEGER,
-        allowNull: false,
-        defaultValue: 0,
-        comment: '总金币'
-      },
-      key: {
-        type: STRING,
-        allowNull: false,
-        defaultValue: '',
-        comment: '唯一标识',
+        comment: '价格',
       },
       status: {
-        type: INTEGER(1),
+        type: ENUM,
+        values: [ 'pending', 'success', 'fail' ],
         allowNull: false,
-        defaultValue: 0,
-        comment: '直播间状态 0未开播 1直播中 2暂停直播 3直播结束'
+        defaultValue: 'pending',
+        comment: '支付状态',
       },
       created_time: DATE,
       updated_time: DATE,
@@ -63,6 +48,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('live');
-  }
+    return queryInterface.dropTable('order');
+  },
 };

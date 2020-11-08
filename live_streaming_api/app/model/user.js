@@ -1,9 +1,8 @@
-'use strict';
-
-
-const crypto = require('crypto')
-module.exports = (app) => {
-  const { INTEGER, STRING, DATE, ENUM, TEXT } = app.Sequelize
+/* eslint-disable no-unused-vars */
+// eslint-disable-next-line strict
+const crypto = require('crypto');
+module.exports = app => {
+  const { INTEGER, STRING, DATE, ENUM, TEXT } = app.Sequelize;
 
   const User = app.model.define('user', {
     id: {
@@ -11,20 +10,6 @@ module.exports = (app) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    wxid:{
-      type:STRING(255),
-      allowNull:true,
-      defaultValue:'',
-      comment:'微信openId',
-      unique:true,
-  },
-  phone:{
-      type:STRING(11),
-      allowNull:true,
-      defaultValue:'',
-      comment:'手机号',
-      unique:true,
-  },
     username: {
       type: STRING(30),
       allowNull: false,
@@ -38,10 +23,10 @@ module.exports = (app) => {
       defaultValue: '',
       comment: '密码',
       set(val) {
-        const hmac = crypto.createHash('sha256', app.config.crypto.secret)
-        hmac.update(val)
-        let hash = hmac.digest('hex')
-        this.setDataValue('password', hash)
+        const hmac = crypto.createHash('sha256', app.config.crypto.secret);
+        hmac.update(val);
+        const hash = hmac.digest('hex');
+        this.setDataValue('password', hash);
       },
     },
     avatar: {
@@ -59,10 +44,10 @@ module.exports = (app) => {
     created_time: {
       type: DATE,
       get() {
-        return app.formatTime(this.getDataValue('created_time'))
+        return app.formatTime(this.getDataValue('created_time'));
       },
     },
     updated_time: DATE,
-  })
-  return User
-}
+  });
+  return User;
+};
